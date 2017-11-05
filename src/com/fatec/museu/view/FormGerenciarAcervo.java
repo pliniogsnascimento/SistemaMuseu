@@ -309,7 +309,7 @@ public class FormGerenciarAcervo extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
+                        .addGap(248, 248, 248)
                         .addComponent(jLabel1)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
