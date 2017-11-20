@@ -1,22 +1,45 @@
 package com.fatec.museu.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Restauracao {
-	
-	private Date dataDeEnvio;
-	private Date dataDeRetorno;
-	private Status status;
-	private String descricao;
-	private Instituicao instituicao;
-	private Obra obra;
-	
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idRestauracao;
+    @Temporal(TemporalType.DATE)
+    private Date dataDeEnvio;
+    @Temporal(TemporalType.DATE)
+    private Date dataDeRetorno;
+    private String status;
+    private String descricao;
+    @OneToOne
+    private Instituicao instituicao;
+    @OneToOne
+    private Obra obra;
+
+    public Long getIdRestauracao() {
+        return idRestauracao;
+    }
+
+    public void setIdRestauracao(Long idRestauracao) {
+        this.idRestauracao = idRestauracao;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Date getDataDeEnvio() {
         return dataDeEnvio;

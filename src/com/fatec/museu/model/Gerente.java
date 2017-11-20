@@ -1,14 +1,18 @@
 package com.fatec.museu.model;
 
-public class Gerente extends Funcionario {
-	
-    Acervo acervo; //Verificar
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-    public Acervo getAcervo() {
-        return acervo;
+@Entity
+public class Gerente {
+    
+    @Id
+    @OneToOne
+    private Funcionario funcionario;
+    
+    public Gerente(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
-
-    public void setAcervo(Acervo acervo) {
-        this.acervo = acervo;
-    }
+    
 }

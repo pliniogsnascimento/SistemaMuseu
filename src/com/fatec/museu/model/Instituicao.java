@@ -1,6 +1,16 @@
 package com.fatec.museu.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Instituicao {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idInstituicao;
     private String nome;
     private String telefone;
     private String endereco;

@@ -1,13 +1,40 @@
 package com.fatec.museu.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Funcionario {
-	private String nome;
-        private String cpf;
-        private String telefone;
-        private Date datanaNascimento;
-        private String endereco;
+    @Id
+    private String cpf;
+    private String nome;
+    private String telefone;
+    @Temporal(TemporalType.DATE)
+    private Date datanaNascimento;
+    private String endereco;
+    
+    //Adicionar no DER
+    private String login;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    private String senha;
 
     public String getNome() {
         return nome;

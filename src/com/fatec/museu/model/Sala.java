@@ -1,16 +1,27 @@
 package com.fatec.museu.model;
 
-public class Sala {
-    private int numeroDaSala;
-    private int maximoDeVisitantes;
-    private boolean salaReservada;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-    public int getNumeroDaSala() {
-        return numeroDaSala;
+@Entity
+public class Sala {
+    
+    @Id
+    private int numeroSala;
+    private int maximoDeVisitantes;
+    
+    @ManyToOne
+    @Column(name = "id_exposicao")
+    private Exposicao exposicao;
+
+    public int getNumeroSala() {
+        return numeroSala;
     }
 
-    public void setNumeroDaSala(int numeroDaSala) {
-        this.numeroDaSala = numeroDaSala;
+    public void setNumeroSala(int numeroDaSala) {
+        this.numeroSala = numeroDaSala;
     }
 
     public int getMaximoDeVisitantes() {
@@ -19,14 +30,6 @@ public class Sala {
 
     public void setMaximoDeVisitantes(int maximoDeVisitantes) {
         this.maximoDeVisitantes = maximoDeVisitantes;
-    }
-
-    public boolean isSalaReservada() {
-        return salaReservada;
-    }
-
-    public void setSalaReservada(boolean salaReservada) {
-        this.salaReservada = salaReservada;
     }
     
 }
