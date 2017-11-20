@@ -12,7 +12,7 @@ public class TesteHibernate {
         EntityManager em = emf.createEntityManager();
         
         Funcionario funcionario = new Funcionario();
-        funcionario.setCpf("111.111.111-11");
+        funcionario.setCpf("111.111.111-12");
         funcionario.setNome("Josney");
         
         em.getTransaction().begin();

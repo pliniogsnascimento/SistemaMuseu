@@ -3,6 +3,7 @@ package com.fatec.museu.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -13,7 +14,7 @@ public class Sala {
     private int maximoDeVisitantes;
     
     @ManyToOne
-    @Column(name = "id_exposicao")
+    @JoinColumn(name = "id_exposicao")
     private Exposicao exposicao;
 
     public int getNumeroSala() {

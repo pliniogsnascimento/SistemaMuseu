@@ -34,7 +34,7 @@ public class Obra {
     private String autor;
     private String dadosBiograficos;
     private String doadorDeObra;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_acervo")
     private Acervo acervo;
     @ManyToOne

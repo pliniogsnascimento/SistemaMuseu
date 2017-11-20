@@ -29,9 +29,9 @@ public class Exposicao {
     private Date dataFim;
     @OneToOne
     private Gerente gerente;
-    @OneToMany(targetEntity = Obra.class, mappedBy = "id_exposicao", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
     private List<Obra> obras;
-    @OneToMany(targetEntity = Sala.class, mappedBy = "id_exposicao", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
     private List<Sala> sala;
     
     public Long getIdExposicao() {
