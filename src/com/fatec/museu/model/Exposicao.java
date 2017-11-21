@@ -25,8 +25,6 @@ public class Exposicao {
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
-    @Temporal(TemporalType.DATE)
-    private Date dataFim;
     @OneToOne
     private Gerente gerente;
     @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
@@ -56,14 +54,6 @@ public class Exposicao {
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
-    }
-
-    public Date getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
     }
 
     public List<Sala> getSala() {

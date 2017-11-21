@@ -5,12 +5,19 @@
  */
 package com.fatec.museu.dao;
 
+import java.util.List;
+
 /**
  *
  * @author junig
  */
-public interface DAO {
+public abstract class DAO<T> {
     
+   public static final String persistenceUnitName = "dbmuseu";  
     
+   public abstract void salvar(T objeto);
+   public abstract List<T> listarTodos();
+   public abstract void excluir(T objeto);
+   public abstract T buscar(T objeto);
     
 }
