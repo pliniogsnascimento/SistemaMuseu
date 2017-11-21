@@ -3,15 +3,12 @@ package com.fatec.museu.dao;
 import com.fatec.museu.model.Funcionario;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class FuncionarioDAO extends DAO<Funcionario> {
     
     @Override
     public void salvar(Funcionario objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DAO.persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         em.getTransaction().begin();
         em.merge(objeto);
@@ -22,8 +19,7 @@ public class FuncionarioDAO extends DAO<Funcionario> {
     
     @Override
     public List<Funcionario> listarTodos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DAO.persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         List<Funcionario> funcionarios = em.createQuery("from Funcionario", Funcionario.class).getResultList();
         
@@ -34,8 +30,7 @@ public class FuncionarioDAO extends DAO<Funcionario> {
     
     @Override
     public void excluir(Funcionario objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DAO.persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         if(objeto != null) {
             em.getTransaction().begin();
@@ -46,15 +41,12 @@ public class FuncionarioDAO extends DAO<Funcionario> {
             System.out.println("Removido");
         }
         
-        
-        
         em.close();
     }
     
     @Override
     public Funcionario buscar(Funcionario objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DAO.persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         Funcionario retorno = (Funcionario) em.find(Funcionario.class, objeto.getCpf());
         

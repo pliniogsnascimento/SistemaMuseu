@@ -3,15 +3,12 @@ package com.fatec.museu.dao;
 import com.fatec.museu.model.Gerente;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class GerenteDAO extends DAO<Gerente>{
 
     @Override
     public void salvar(Gerente objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         em.getTransaction().begin();
         em.merge(objeto);
@@ -22,8 +19,7 @@ public class GerenteDAO extends DAO<Gerente>{
 
     @Override
     public List<Gerente> listarTodos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         List<Gerente> gerentes = em.createQuery("from Gerente").getResultList();
         em.close();
@@ -33,8 +29,7 @@ public class GerenteDAO extends DAO<Gerente>{
 
     @Override
     public void excluir(Gerente objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         em.getTransaction().begin();
         objeto = em.merge(objeto);
@@ -51,13 +46,11 @@ public class GerenteDAO extends DAO<Gerente>{
 
     @Override
     public Gerente buscar(Gerente objeto) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = super.getEntityManager();
         
         Gerente gerente = em.find(Gerente.class, objeto.getIdGerente());
         em.close();
         return gerente;
     }
-
     
 }
