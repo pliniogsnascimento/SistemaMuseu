@@ -2,11 +2,8 @@ package testes;
 
 import com.fatec.museu.dao.DAO;
 import com.fatec.museu.model.Acervo;
-import com.fatec.museu.model.Funcionario;
 import com.fatec.museu.util.FactoryAcervoDAO;
 import com.fatec.museu.util.FactoryDAO;
-import com.fatec.museu.util.FactoryFuncionarioDAO;
-import java.util.Date;
 import java.util.List;
 
 public class TesteAcervoDAO {
@@ -53,7 +50,7 @@ public class TesteAcervoDAO {
         
         
         Acervo acervo = new Acervo();
-        acervo.setIdAcervo(1L);
+        acervo.setIdAcervo(5L);
         
         acervo = (Acervo) dao.buscar(acervo);
         
@@ -65,7 +62,7 @@ public class TesteAcervoDAO {
         TesteAcervoDAO teste = new TesteAcervoDAO();
         //teste.testeSalvar();
         //teste.testeListarTodos();
-        //teste.testeBuscar();
+        teste.testeBuscar();
         //teste.testarExcluir();
     }
 }

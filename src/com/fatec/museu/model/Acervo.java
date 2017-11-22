@@ -2,6 +2,7 @@ package com.fatec.museu.model;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Acervo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAcervo;
-    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Obra> obras;
     private String origemDoAcervo;
     private String descricao;

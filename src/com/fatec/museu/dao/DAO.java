@@ -23,7 +23,7 @@ public abstract class DAO<T> {
     public abstract void excluir(T objeto);
     public abstract T buscar(T objeto);
     
-    public EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         EntityManager em = emf.createEntityManager();
         return em;
