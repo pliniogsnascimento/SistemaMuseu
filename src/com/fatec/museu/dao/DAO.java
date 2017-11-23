@@ -16,7 +16,7 @@ import javax.persistence.Persistence;
  */
 public abstract class DAO<T> {
     
-    public static final String persistenceUnitName = "dbmuseu";
+    private final String persistenceUnitName = "dbmuseu";
     
     public abstract void salvar(T objeto);
     public abstract List<T> listarTodos();

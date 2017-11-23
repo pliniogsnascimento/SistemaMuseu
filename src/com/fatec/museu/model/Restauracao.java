@@ -2,6 +2,7 @@ package com.fatec.museu.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,9 +22,9 @@ public class Restauracao {
     private Date dataDeRetorno;
     private String status;
     private String descricao;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Instituicao instituicao;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Obra obra;
 
     public Long getIdRestauracao() {
