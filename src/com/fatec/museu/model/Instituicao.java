@@ -15,6 +15,14 @@ public class Instituicao {
     private String telefone;
     private String endereco;
 
+    public Long getIdInstituicao() {
+        return idInstituicao;
+    }
+
+    public void setIdInstituicao(Long idInstituicao) {
+        this.idInstituicao = idInstituicao;
+    }
+
     public String getNome() {
         return nome;
     }

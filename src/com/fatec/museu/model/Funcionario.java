@@ -17,6 +17,7 @@ public class Funcionario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
     private String endereco;
+    private boolean gerente;
     
     //Adicionar no DER
     private String login;

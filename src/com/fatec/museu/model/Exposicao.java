@@ -2,15 +2,13 @@ package com.fatec.museu.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,8 +23,10 @@ public class Exposicao {
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataInicio;
-    @OneToOne
+    /*
+    @OneToOne(fetch=FetchType.EAGER)
     private Gerente gerente;
+*/
     @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
     private List<Obra> obras;
     @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
@@ -63,7 +63,8 @@ public class Exposicao {
     public void setSala(List<Sala> sala) {
         this.sala = sala;
     }
-
+    
+    /*
     public Gerente getGerente() {
         return gerente;
     }
@@ -71,7 +72,7 @@ public class Exposicao {
     public void setGerente(Gerente gerente) {
         this.gerente = gerente;
     }
-
+    */
     public List<Obra> getObras() {
         return obras;
     }
@@ -79,5 +80,57 @@ public class Exposicao {
     public void setObras(List<Obra> obras) {
         this.obras = obras;
     }
-	
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.idExposicao);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.dataInicio);
+       // hash = 47 * hash + Objects.hashCode(this.gerente);
+        hash = 47 * hash + Objects.hashCode(this.obras);
+        hash = 47 * hash + Objects.hashCode(this.sala);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exposicao other = (Exposicao) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.idExposicao, other.idExposicao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicio, other.dataInicio)) {
+            return false;
+        }
+        /*
+        if (!Objects.equals(this.gerente, other.gerente)) {
+            return false;
+        }
+*/
+        if (!Objects.equals(this.obras, other.obras)) {
+            return false;
+        }
+        if (!Objects.equals(this.sala, other.sala)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Exposicao{" + "idExposicao=" + idExposicao + ", nome=" + nome + ", dataInicio=" + dataInicio + ", obras=" + obras + ", sala=" + sala + '}';
+    }
+    
 }
