@@ -62,7 +62,7 @@ public class TesteAcervoDAO {
         TesteAcervoDAO teste = new TesteAcervoDAO();
         //teste.testeSalvar();
         //teste.testeListarTodos();
-        teste.testeBuscar();
+        //teste.testeBuscar();
         //teste.testarExcluir();
     }
 }

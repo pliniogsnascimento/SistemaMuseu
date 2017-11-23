@@ -1,5 +1,6 @@
 package com.fatec.museu.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -14,13 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-class Endereco {
-    
-}
-
 @Entity
 @Table(name = "tb_obra")
-public class Obra {
+public class Obra implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +30,7 @@ public class Obra {
     private String autor;
     private String dadosBiograficos;
     private String doadorDeObra;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_acervo")
     private Acervo acervo;
     @ManyToOne(fetch = FetchType.EAGER)

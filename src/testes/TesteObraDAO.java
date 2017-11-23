@@ -6,6 +6,7 @@ import com.fatec.museu.model.Obra;
 import com.fatec.museu.util.FactoryObraDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,20 +36,30 @@ public class TesteObraDAO {
     }
     
     public void testeListar() {
+        List<Obra> obras = dao.listarTodos();
         
+        for(Obra obra:obras) {
+            System.out.println(obra.toString());
+        }
     }
     
     public void testeBuscar() {
-        
+        obra.setIdObra(1L);
+        obra = (Obra) dao.buscar(obra);
+        System.out.println(obra.toString());
     }
     
     public void testeRemover() {
-        
+        obra.setIdObra(2L);
+        dao.excluir(obra);
     }
     
     public static void main(String[] args) {
         TesteObraDAO teste = new TesteObraDAO();
-        teste.testeSalvar();
+        //teste.testeSalvar();
+        //teste.testeListar();
+        //teste.testeBuscar();
+        teste.testeRemover();
     }
     
 }

@@ -17,7 +17,7 @@ public class Acervo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAcervo;
-    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Obra> obras;
     private String origemDoAcervo;
     private String descricao;
@@ -93,7 +93,9 @@ public class Acervo {
 
     @Override
     public String toString() {
-        return "Acervo{" + "idAcervo=" + idAcervo + ", obras=" + obras + ", origemDoAcervo=" + origemDoAcervo + ", descricao=" + descricao + '}';
+        return "Acervo{" + "idAcervo=" + idAcervo +
+                //", obras=" + obras + 
+                ", origemDoAcervo=" + origemDoAcervo + ", descricao=" + descricao + '}';
     }
     
     
