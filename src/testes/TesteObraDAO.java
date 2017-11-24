@@ -2,6 +2,7 @@ package testes;
 
 import com.fatec.museu.dao.DAO;
 import com.fatec.museu.model.Acervo;
+import com.fatec.museu.model.Exposicao;
 import com.fatec.museu.model.Obra;
 import com.fatec.museu.util.FactoryObraDAO;
 import java.text.ParseException;
@@ -22,7 +23,8 @@ public class TesteObraDAO {
     }
     
     public void testeSalvar() {
-        obra.setTitulo("Monalisa");
+        //obra.setIdObra(1L);
+        obra.setTitulo("Manoliso");
         obra.setAutor("Leonardo Da Vinci");
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -30,8 +32,12 @@ public class TesteObraDAO {
         } catch (ParseException ex) {
             Logger.getLogger(TesteObraDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /*Exposicao exposicao = new Exposicao();
+        exposicao.setIdExposicao(2L);
+        obra.setExposicao(exposicao);*/
         obra.setAcervo(new Acervo());
-        obra.getAcervo().setIdAcervo(5L);
+        obra.getAcervo().setIdAcervo(4L);
+        System.out.println(obra);
         dao.salvar(obra);
     }
     
@@ -50,7 +56,7 @@ public class TesteObraDAO {
     }
     
     public void testeRemover() {
-        obra.setIdObra(2L);
+        obra.setIdObra(15L);
         dao.excluir(obra);
     }
     
@@ -59,7 +65,7 @@ public class TesteObraDAO {
         //teste.testeSalvar();
         //teste.testeListar();
         //teste.testeBuscar();
-        teste.testeRemover();
+        //teste.testeRemover();
     }
     
 }

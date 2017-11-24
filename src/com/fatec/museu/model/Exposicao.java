@@ -3,6 +3,7 @@ package com.fatec.museu.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Exposicao {
     @OneToOne(fetch=FetchType.EAGER)
     private Gerente gerente;
 */
-    @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
     private List<Obra> obras;
     @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
     private List<Sala> sala;

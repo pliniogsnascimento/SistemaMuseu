@@ -45,11 +45,4 @@ public class AcervoDAO extends DAO<Acervo> {
         return acervo;
     }
     
-    public Acervo buscarComObras(Long idAcervo) {
-        EntityManager em = super.getEntityManager();
-        Acervo acervo = (Acervo) em.createQuery("from Acervo a JOIN a.obras o where a.idAcervo = ?").setParameter(1, idAcervo).getSingleResult();
-        em.close();
-        return acervo;
-    }
-    
 }
