@@ -27,7 +27,7 @@ public class Exposicao {
     @OneToOne(fetch=FetchType.EAGER)
     private Gerente gerente;
 */
-    @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
     private List<Obra> obras;
     @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
     private List<Sala> sala;
