@@ -17,7 +17,7 @@ public class Acervo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAcervo;
-    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Obra.class, mappedBy = "acervo" , fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Obra> obras;
     private String origemDoAcervo;
     private String descricao;

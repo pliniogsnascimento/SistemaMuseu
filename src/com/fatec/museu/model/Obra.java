@@ -179,7 +179,11 @@ public class Obra implements Serializable {
 
     @Override
     public String toString() {
-        return "Obra{" + "idObra=" + idObra + ", titulo=" + titulo + ", dataDeObra=" + dataDeObra + ", tipoDeObra=" + tipoDeObra + ", categoria=" + categoria + ", autor=" + autor + ", dadosBiograficos=" + dadosBiograficos + ", doadorDeObra=" + doadorDeObra + ", acervo=" + acervo + ", exposicao=" + exposicao + '}';
+        return "Obra{" + "idObra=" + idObra + ", titulo=" + titulo + 
+                ", dataDeObra=" + dataDeObra + ", tipoDeObra=" + tipoDeObra + 
+                ", categoria=" + categoria + ", autor=" + autor + 
+                ", dadosBiograficos=" + dadosBiograficos + ", doadorDeObra=" + doadorDeObra + 
+                ", acervo=" + acervo +/* ", exposicao=" + exposicao +*/ '}';
     }
     
         
