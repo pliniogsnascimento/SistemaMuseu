@@ -1,5 +1,6 @@
 package com.fatec.museu.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Restauracao {
+public class Restauracao implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -81,7 +82,12 @@ public class Restauracao {
     public void setObra(Obra obra) {
         this.obra = obra;
     }
+
+    @Override
+    public String toString() {
+        return "Restauracao{" + "idRestauracao=" + idRestauracao + ", dataDeEnvio=" + dataDeEnvio + ", dataDeRetorno=" + dataDeRetorno + ", status=" + status + ", descricao=" + descricao + ", instituicao=" + instituicao + ", obra=" + obra + '}';
+    }
 	
-	
+    
 	
 }

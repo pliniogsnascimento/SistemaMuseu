@@ -46,4 +46,10 @@ public class Instituicao {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        return "Instituicao{" + "idInstituicao=" + idInstituicao + ", nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco + '}';
+    }
+    
 }

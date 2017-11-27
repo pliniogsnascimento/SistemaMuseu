@@ -34,7 +34,7 @@ public class TesteObraDAO {
             Logger.getLogger(TesteObraDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         Exposicao exposicao = new Exposicao();
-        exposicao.setIdExposicao(9L);
+        exposicao.setIdExposicao(1L);
         obra.setExposicao(exposicao);
         /*
         obra.setAcervo(new Acervo());
@@ -59,7 +59,7 @@ public class TesteObraDAO {
     }
     
     public void testeRemover() {
-        obra.setIdObra(15L);
+        obra.setIdObra(25L);
         dao.excluir(obra);
     }
     
@@ -69,7 +69,7 @@ public class TesteObraDAO {
     
     public static void main(String[] args) {
         TesteObraDAO teste = new TesteObraDAO();
-        teste.testeSalvar();
+        //teste.testeSalvar();
         //teste.testeListar();
         //teste.testeBuscar();
         //teste.testeRemover();

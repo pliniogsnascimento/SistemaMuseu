@@ -21,7 +21,7 @@ public class TesteExposicaoDAO {
     }
     
     public void testeSalvar() {
-        exposicao.setNome("Especial Pablo Picasso");
+        exposicao.setNome("Da Vinci");
         exposicao.setDataInicio(new Date());
         
         dao.salvar(exposicao);
@@ -60,7 +60,7 @@ public class TesteExposicaoDAO {
         //teste.testeListar();
         //teste.testeBuscar();
         //teste2.testeSalvar();
-        teste.testeExcluir();
+        //teste.testeExcluir();
     }
     
 }

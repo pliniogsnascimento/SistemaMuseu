@@ -30,7 +30,7 @@ public class Exposicao {
 */
     @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
     private List<Obra> obras;
-    @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
     private List<Sala> sala;
     
     public Long getIdExposicao() {
