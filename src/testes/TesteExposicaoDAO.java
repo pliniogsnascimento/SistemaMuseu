@@ -1,6 +1,7 @@
 package testes;
 
 import com.fatec.museu.dao.DAO;
+import com.fatec.museu.dao.ObraDAO;
 import com.fatec.museu.model.Exposicao;
 import com.fatec.museu.util.FactoryDAO;
 import com.fatec.museu.util.FactoryExposicaoDAO;
@@ -12,9 +13,9 @@ public class TesteExposicaoDAO {
     
     private Exposicao exposicao;
     private DAO dao;
+    FactoryDAO factory = new FactoryExposicaoDAO();
     
     public TesteExposicaoDAO() {
-        FactoryDAO factory = new FactoryExposicaoDAO();
         this.exposicao = new Exposicao();
         this.dao = factory.criarDao();
     }
@@ -37,23 +38,29 @@ public class TesteExposicaoDAO {
     }
     
     public void testeBuscar() {
-        exposicao.setIdExposicao(2L);
+        exposicao.setIdExposicao(1L);
         exposicao = (Exposicao) dao.buscar(exposicao);
         System.out.println(exposicao);
     }
     
     public void testeExcluir() {
-        exposicao.setIdExposicao(8L);
+        exposicao.setIdExposicao(9L);
+        /*
+        ObraDAO obDao = new ObraDAO();
+        obDao.desvincularExposicao(exposicao.getIdExposicao());
+        */
         dao.excluir(exposicao);
         System.out.println("Exposição excluida com sucesso");
     }
     
     public static void main(String[] args) {
         TesteExposicaoDAO teste = new TesteExposicaoDAO();
-        teste.testeSalvar();
+        TesteObraDAO teste2 = new TesteObraDAO();
+        //teste.testeSalvar();
         //teste.testeListar();
         //teste.testeBuscar();
-        //teste.testeExcluir();
+        //teste2.testeSalvar();
+        teste.testeExcluir();
     }
     
 }
