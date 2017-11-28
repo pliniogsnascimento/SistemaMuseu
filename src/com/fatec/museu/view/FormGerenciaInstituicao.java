@@ -4,18 +4,26 @@
  * and open the template in the editor.
  */
 package com.fatec.museu.view;
-
+    
 /**
  *
  * @author Panda
  */
 public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
+    static private FormGerenciaInstituicao instanciaInstituicao; 
 
     /**
      * Creates new form FormGerenciaInstituicao
      */
     public FormGerenciaInstituicao() {
         initComponents();
+    }
+    
+     public static FormGerenciaInstituicao getInstance() {
+        if(instanciaInstituicao == null) {
+            instanciaInstituicao = new FormGerenciaInstituicao();
+        }
+        return instanciaInstituicao;
     }
 
     /**
@@ -33,12 +41,12 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,13 +96,6 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 200, 30));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 200, 30));
-
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -106,7 +107,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
 
         jLabel4.setText("Telefone");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 60, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 70, 30));
 
         jLabel3.setText("Nome da Instituição");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
@@ -114,6 +115,13 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Gerenciar Institução");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 350, 80));
+
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 129, 220, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,10 +142,6 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
@@ -147,6 +151,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private com.fatec.museu.util.GradientButton gradientButton3;
     private com.fatec.museu.util.GradientButton gradientButton4;
     private com.fatec.museu.util.GradientButton gradientButton5;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -154,7 +159,6 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
