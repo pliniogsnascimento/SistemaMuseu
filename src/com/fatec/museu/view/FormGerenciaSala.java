@@ -10,12 +10,19 @@ package com.fatec.museu.view;
  * @author root
  */
 public class FormGerenciaSala extends javax.swing.JInternalFrame {
-
+    static private FormGerenciaSala instaciaSala;
     /**
      * Creates new form FormGerenciaSala
      */
     public FormGerenciaSala() {
         initComponents();
+    }
+    
+    public static FormGerenciaSala getInstance() {
+        if(instaciaSala == null) {
+            instaciaSala = new FormGerenciaSala();
+        }
+        return instaciaSala;
     }
 
     /**

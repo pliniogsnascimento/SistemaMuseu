@@ -3,9 +3,11 @@ package com.fatec.museu.model;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Sala implements Serializable {
@@ -14,8 +16,9 @@ public class Sala implements Serializable {
     private int numeroSala;
     private int maximoDeVisitantes;
     
-    @ManyToOne
-    @JoinColumn(name = "id_exposicao")
+    //@ManyToOne
+    @OneToOne(targetEntity = Exposicao.class, mappedBy = "sala", fetch = FetchType.EAGER)
+    //@JoinColumn(name = "id_exposicao")
     private Exposicao exposicao;
 
     public int getNumeroSala() {

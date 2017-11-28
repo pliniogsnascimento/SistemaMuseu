@@ -48,7 +48,8 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         menuAcervo = new javax.swing.JMenu();
         menuExposicao = new javax.swing.JMenu();
         menuRestauracao = new javax.swing.JMenu();
-        menuSair = new javax.swing.JMenu();
+        menuSala = new javax.swing.JMenu();
+        menuInstituicao = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -107,8 +108,26 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuBar2.add(menuRestauracao);
 
-        menuSair.setText("Sair");
-        jMenuBar2.add(menuSair);
+        menuSala.setText("Salas");
+        menuSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSalaActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuSala);
+
+        menuInstituicao.setText("Instituições");
+        menuInstituicao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuInstituicaoMouseClicked(evt);
+            }
+        });
+        menuInstituicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInstituicaoActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(menuInstituicao);
 
         setJMenuBar(jMenuBar2);
 
@@ -186,6 +205,34 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         formulario.setVisible(true);
     }//GEN-LAST:event_menuExposicaoMouseClicked
 
+    private void menuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalaActionPerformed
+       FormGerenciaSala formulario = FormGerenciaSala.getInstance();
+        for(JInternalFrame f : deskPane1.getAllFrames()) {
+            if(f.equals(formulario)) {
+                formulario.setVisible(true);
+                return;
+            }
+        }
+        deskPane1.add(formulario);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_menuSalaActionPerformed
+
+    private void menuInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInstituicaoActionPerformed
+     
+    }//GEN-LAST:event_menuInstituicaoActionPerformed
+
+    private void menuInstituicaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuInstituicaoMouseClicked
+    FormGerenciaInstituicao formulario = FormGerenciaInstituicao.getInstance();
+        for(JInternalFrame f : deskPane1.getAllFrames()) {
+            if(f.equals(formulario)) {
+                formulario.setVisible(true);
+                return;
+            }
+        }
+        deskPane1.add(formulario);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_menuInstituicaoMouseClicked
+
 /**
  * @param args the command line arguments
  */
@@ -227,8 +274,9 @@ new FormMenuPrincipal().setVisible(true);
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu menuAcervo;
     private javax.swing.JMenu menuExposicao;
+    private javax.swing.JMenu menuInstituicao;
     private javax.swing.JMenu menuObra;
     private javax.swing.JMenu menuRestauracao;
-    private javax.swing.JMenu menuSair;
+    private javax.swing.JMenu menuSala;
     // End of variables declaration//GEN-END:variables
 }

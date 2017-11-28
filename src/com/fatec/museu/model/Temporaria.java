@@ -1,5 +1,6 @@
 package com.fatec.museu.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -9,13 +10,13 @@ import javax.persistence.TemporalType;
 public class Temporaria extends Exposicao {
     
     @Temporal(TemporalType.DATE)
-    private Date dataFim;
+    private Calendar dataFim;
 
-    public Date getDataFim() {
+    public Calendar getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(Calendar dataFim) {
         this.dataFim = dataFim;
     }
     

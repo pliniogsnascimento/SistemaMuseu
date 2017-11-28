@@ -1,5 +1,6 @@
 package com.fatec.museu.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,16 +24,21 @@ public class Exposicao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idExposicao;
     private String nome;
+    
     @Temporal(TemporalType.DATE)
-    private Date dataInicio;
+    private Calendar dataInicio;
+   
+    @Temporal(TemporalType.DATE)
+    private Calendar dataTermino;
     /*
     @OneToOne(fetch=FetchType.EAGER)
     private Gerente gerente;
 */
     @OneToMany(targetEntity = Obra.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
     private List<Obra> obras;
-    @OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
-    private List<Sala> sala;
+    //@OneToMany(targetEntity = Sala.class, mappedBy = "exposicao", fetch=FetchType.EAGER, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER)
+    private Sala sala;
     
     public Long getIdExposicao() {
         return idExposicao;
@@ -49,19 +56,19 @@ public class Exposicao {
         this.nome = nome;
     }
 
-    public Date getDataInicio() {
+    public Calendar getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(Calendar dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public List<Sala> getSala() {
+    public Sala getSala() {
         return sala;
     }
 
-    public void setSala(List<Sala> sala) {
+    public void setSala(Sala sala) {
         this.sala = sala;
     }
     
@@ -88,7 +95,7 @@ public class Exposicao {
         hash = 47 * hash + Objects.hashCode(this.idExposicao);
         hash = 47 * hash + Objects.hashCode(this.nome);
         hash = 47 * hash + Objects.hashCode(this.dataInicio);
-       // hash = 47 * hash + Objects.hashCode(this.gerente);
+        //hash = 47 * hash + Objects.hashCode(this.gerente);
         hash = 47 * hash + Objects.hashCode(this.obras);
         hash = 47 * hash + Objects.hashCode(this.sala);
         return hash;
@@ -127,6 +134,14 @@ public class Exposicao {
             return false;
         }
         return true;
+    }
+
+    public Calendar getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(Calendar dataTermino) {
+        this.dataTermino = dataTermino;
     }
 
     @Override
