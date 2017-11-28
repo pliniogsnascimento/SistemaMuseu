@@ -5,12 +5,22 @@
  */
 package com.fatec.museu.view;
 
+import com.fatec.museu.controllers.ControleGerenciarAcervo;
+import com.fatec.museu.model.Obra;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Panda
  */
 public class FormGerenciaObra extends javax.swing.JInternalFrame {
     static private FormGerenciaObra instanciaObra;
+    private ControleGerenciarAcervo controle = new ControleGerenciarAcervo();
     /**
      * Creates new form FormGerenciaObra
      */
@@ -34,116 +44,122 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gradientButton2 = new com.fatec.museu.util.GradientButton();
-        gradientButton3 = new com.fatec.museu.util.GradientButton();
-        jTextField1 = new javax.swing.JTextField();
+        btngTipoObra = new javax.swing.ButtonGroup();
+        btnCadastrar = new com.fatec.museu.util.GradientButton();
+        btnVoltar = new com.fatec.museu.util.GradientButton();
+        txtTitulo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCategoria = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbTipoObra = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtDadosBiograficos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtDoadorObra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        gradientButton1 = new com.fatec.museu.util.GradientButton();
+        lblImagem = new javax.swing.JLabel();
+        btnProcurarImagem = new com.fatec.museu.util.GradientButton();
         jLabel9 = new javax.swing.JLabel();
-        gradientButton4 = new com.fatec.museu.util.GradientButton();
+        btnExcluir = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        gradientButton6 = new com.fatec.museu.util.GradientButton();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        btnAlterar = new com.fatec.museu.util.GradientButton();
+        txtDataObra = new javax.swing.JFormattedTextField();
+        rdbObraFisica = new javax.swing.JRadioButton();
+        rdbObraVirtual = new javax.swing.JRadioButton();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gradientButton2.setText("Cadastrar");
-        getContentPane().add(gradientButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 350, 90, 40));
-
-        gradientButton3.setText("Voltar");
-        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 700, 100, 40));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 210, 30));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 350, 90, 40));
+
+        btnVoltar.setText("Voltar");
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 700, 100, 40));
+
+        txtTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTituloActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 210, 30));
 
         jLabel1.setText("Título");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 60, 30));
 
         jLabel2.setText("Data da Obra");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 70, 30));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 200, 30));
+        getContentPane().add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 200, 30));
 
         jLabel3.setText("Categoria");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 70, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 30));
+        cmbTipoObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cmbTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 30));
 
         jLabel4.setText("Tipo de Obra");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtAutorActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 170, 30));
+        getContentPane().add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 170, 30));
 
         jLabel5.setText("Autor");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 60, 30));
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtDadosBiograficos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtDadosBiograficosActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 210, 100));
+        getContentPane().add(txtDadosBiograficos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 210, 100));
 
         jLabel6.setText("Dados Biográficos");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 100, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 100, 30));
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtDoadorObra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txtDoadorObraActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 200, 30));
+        getContentPane().add(txtDoadorObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 200, 30));
 
         jLabel7.setText("Doador da Obra");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 120, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 80, 30));
 
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
+        lblImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
 
-        gradientButton1.setText("Procurar Imagem");
-        gradientButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnProcurarImagem.setText("Procurar Imagem");
+        btnProcurarImagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton1ActionPerformed(evt);
+                btnProcurarImagemActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 270, -1, 40));
+        getContentPane().add(btnProcurarImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 290, -1, 40));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel9.setText("Gerenciar Obras");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
-        gradientButton4.setText("Excluir");
-        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 710, 110, 30));
+        btnExcluir.setText("Excluir");
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 710, 110, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,84 +176,142 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1050, 260));
 
-        gradientButton6.setText("Alterar");
-        gradientButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton6ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 710, 110, 30));
-
-        jLabel10.setText("Procurar por");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 60, 30));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 210, 30));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 710, 110, 30));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtDataObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 79, 200, 30));
+        getContentPane().add(txtDataObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 79, 200, 30));
+
+        rdbObraFisica.setText("Obra Física");
+        rdbObraFisica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbObraFisicaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rdbObraFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, -1, -1));
+
+        rdbObraVirtual.setText("Obra Virtual");
+        getContentPane().add(rdbObraVirtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtTituloActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtCategoriaActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAutorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtAutorActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtDadosBiograficosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDadosBiograficosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtDadosBiograficosActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtDoadorObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoadorObraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtDoadorObraActionPerformed
 
-    private void gradientButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton1ActionPerformed
+    private void btnProcurarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarImagemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton1ActionPerformed
+    }//GEN-LAST:event_btnProcurarImagemActionPerformed
 
-    private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton6ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        
+        Obra obra = new Obra();
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        
+      
+        obra.setAutor(txtAutor.getText());
+        obra.setDadosBiograficos(txtDadosBiograficos.getText());
+        obra.setTitulo(txtTitulo.getText());
+        obra.setCategoria(cmbTipoObra.getSelectedItem().toString());
+       
+        String xgh = txtDataObra.getText();
+        String[] parts = xgh.split("/");
+        String part1 = parts[0]; 
+        String part2 = parts[1]; 
+        String part3 = parts[2];
+        
+        int day = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2) - 1;
+        int year = Integer.parseInt(part3);
+        
+        obra.setDataDeObra(new GregorianCalendar(year,month,day));
+        
+        
+        
+        
+        /*
+        try {
+            obra.setDataDeObra(format.parse(txtDataObra.getText()));
+        } catch (ParseException ex) {
+
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        
+        obra.setCategoria(txtCategoria.getText());
+        obra.setDoadorDeObra(txtDoadorObra.getText());
+        
+        if(rdbObraFisica.isSelected())
+            obra.setTipoDeObra("Fisico");
+        else
+            obra.setTipoDeObra("Virtual");
+        
+        controle.registrarObra(obra);
+        
+        
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void rdbObraFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbObraFisicaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdbObraFisicaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.fatec.museu.util.GradientButton gradientButton1;
-    private com.fatec.museu.util.GradientButton gradientButton2;
-    private com.fatec.museu.util.GradientButton gradientButton3;
-    private com.fatec.museu.util.GradientButton gradientButton4;
-    private com.fatec.museu.util.GradientButton gradientButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private com.fatec.museu.util.GradientButton btnAlterar;
+    private com.fatec.museu.util.GradientButton btnCadastrar;
+    private com.fatec.museu.util.GradientButton btnExcluir;
+    private com.fatec.museu.util.GradientButton btnProcurarImagem;
+    private com.fatec.museu.util.GradientButton btnVoltar;
+    private javax.swing.ButtonGroup btngTipoObra;
+    private javax.swing.JComboBox<String> cmbTipoObra;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblImagem;
+    private javax.swing.JRadioButton rdbObraFisica;
+    private javax.swing.JRadioButton rdbObraVirtual;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtCategoria;
+    private javax.swing.JTextField txtDadosBiograficos;
+    private javax.swing.JFormattedTextField txtDataObra;
+    private javax.swing.JTextField txtDoadorObra;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
