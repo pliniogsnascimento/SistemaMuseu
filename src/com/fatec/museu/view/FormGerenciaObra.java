@@ -10,12 +10,19 @@ package com.fatec.museu.view;
  * @author Panda
  */
 public class FormGerenciaObra extends javax.swing.JInternalFrame {
-
+    static private FormGerenciaObra instanciaObra;
     /**
      * Creates new form FormGerenciaObra
      */
     public FormGerenciaObra() {
         initComponents();
+    }
+    
+    public static FormGerenciaObra getInstance() {
+        if(instanciaObra == null) {
+            instanciaObra = new FormGerenciaObra();
+        }
+        return instanciaObra;
     }
 
     /**
@@ -31,7 +38,6 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         gradientButton3 = new com.fatec.museu.util.GradientButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -52,6 +58,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         gradientButton6 = new com.fatec.museu.util.GradientButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,25 +78,18 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jLabel1.setText("Título");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 60, 30));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 120, 30));
-
         jLabel2.setText("Data da Obra");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 170, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 30));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 120, 30));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 200, 30));
 
         jLabel3.setText("Categoria");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 60, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 70, 30));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 30));
@@ -125,7 +125,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 200, 30));
 
         jLabel7.setText("Doador da Obra");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 90, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 120, 30));
 
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
@@ -174,16 +174,19 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 210, 30));
 
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 79, 200, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -218,6 +221,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private com.fatec.museu.util.GradientButton gradientButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -231,7 +235,6 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
