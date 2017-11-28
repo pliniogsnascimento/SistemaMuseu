@@ -58,7 +58,6 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtAutor = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtDadosBiograficos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtDoadorObra = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -72,6 +71,8 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         txtDataObra = new javax.swing.JFormattedTextField();
         rdbObraFisica = new javax.swing.JRadioButton();
         rdbObraVirtual = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDadosBiograficos = new javax.swing.JTextArea();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -81,69 +82,67 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 350, 90, 40));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 110, 40));
 
         btnVoltar.setText("Voltar");
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 700, 100, 40));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 660, 100, 40));
 
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 210, 30));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 210, 30));
 
         jLabel1.setText("Título");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 60, 30));
 
         jLabel2.setText("Data da Obra");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 70, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 70, 30));
 
         txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 200, 30));
+        getContentPane().add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 200, 30));
 
         jLabel3.setText("Categoria");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, -1, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, 30));
 
         cmbTipoObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 170, 30));
+        getContentPane().add(cmbTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 210, 30));
 
         jLabel4.setText("Tipo de Obra");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 70, -1));
 
         txtAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAutorActionPerformed(evt);
             }
         });
-        getContentPane().add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 170, 30));
+        getContentPane().add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, 30));
 
         jLabel5.setText("Autor");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 60, 30));
-
-        txtDadosBiograficos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDadosBiograficosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtDadosBiograficos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 210, 100));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 30, 20));
 
         jLabel6.setText("Dados Biográficos");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 100, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 30));
 
         txtDoadorObra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDoadorObraActionPerformed(evt);
             }
         });
-        getContentPane().add(txtDoadorObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 200, 30));
+        getContentPane().add(txtDoadorObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 210, 30));
 
         jLabel7.setText("Doador da Obra");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 80, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, 30));
 
         lblImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
@@ -161,7 +160,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         btnExcluir.setText("Excluir");
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 710, 110, 30));
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, 110, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,7 +175,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1050, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1070, 240));
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,14 +183,14 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 710, 110, 30));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 660, 110, 40));
 
         try {
             txtDataObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(txtDataObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 79, 200, 30));
+        getContentPane().add(txtDataObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 200, 30));
 
         rdbObraFisica.setText("Obra Física");
         rdbObraFisica.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +202,12 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
 
         rdbObraVirtual.setText("Obra Virtual");
         getContentPane().add(rdbObraVirtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
+
+        txtDadosBiograficos.setColumns(20);
+        txtDadosBiograficos.setRows(5);
+        jScrollPane2.setViewportView(txtDadosBiograficos);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 210, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -218,10 +223,6 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private void txtAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAutorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAutorActionPerformed
-
-    private void txtDadosBiograficosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDadosBiograficosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDadosBiograficosActionPerformed
 
     private void txtDoadorObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoadorObraActionPerformed
         // TODO add your handling code here:
@@ -292,6 +293,10 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbObraFisicaActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton btnAlterar;
@@ -310,13 +315,14 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblImagem;
     private javax.swing.JRadioButton rdbObraFisica;
     private javax.swing.JRadioButton rdbObraVirtual;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtCategoria;
-    private javax.swing.JTextField txtDadosBiograficos;
+    private javax.swing.JTextArea txtDadosBiograficos;
     private javax.swing.JFormattedTextField txtDataObra;
     private javax.swing.JTextField txtDoadorObra;
     private javax.swing.JTextField txtTitulo;

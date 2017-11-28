@@ -1,6 +1,7 @@
 package com.fatec.museu.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,9 +19,9 @@ public class Restauracao implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idRestauracao;
     @Temporal(TemporalType.DATE)
-    private Date dataDeEnvio;
+    private Calendar dataDeEnvio;
     @Temporal(TemporalType.DATE)
-    private Date dataDeRetorno;
+    private Calendar dataDeRetorno;
     private String status;
     private String descricao;
     @OneToOne(fetch = FetchType.EAGER)
@@ -43,19 +44,19 @@ public class Restauracao implements Serializable {
         this.status = status;
     }
 
-    public Date getDataDeEnvio() {
+    public Calendar getDataDeEnvio() {
         return dataDeEnvio;
     }
 
-    public void setDataDeEnvio(Date dataDeEnvio) {
+    public void setDataDeEnvio(Calendar dataDeEnvio) {
         this.dataDeEnvio = dataDeEnvio;
     }
 
-    public Date getDataDeRetorno() {
+    public Calendar getDataDeRetorno() {
         return dataDeRetorno;
     }
 
-    public void setDataDeRetorno(Date dataDeRetorno) {
+    public void setDataDeRetorno(Calendar dataDeRetorno) {
         this.dataDeRetorno = dataDeRetorno;
     }
 

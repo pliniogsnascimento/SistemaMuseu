@@ -5,6 +5,9 @@
  */
 package com.fatec.museu.view;
 
+import com.fatec.museu.controllers.ControleGerenciarSala;
+import com.fatec.museu.model.Sala;
+
 /**
  *
  * @author root
@@ -35,31 +38,137 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnRegistrar = new com.fatec.museu.util.GradientButton();
+        btnDeletar = new com.fatec.museu.util.GradientButton();
+        txtNumeroSala = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        btnVoltar = new com.fatec.museu.util.GradientButton();
+        txtMaximoVisitantes = new javax.swing.JTextField();
+        btnAlterar = new com.fatec.museu.util.GradientButton();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Gerenciar Sala");
+        jLabel1.setText("                      Gerenciar Sala");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 690, 100));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(194, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(184, 184, 184))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 336, Short.MAX_VALUE))
-        );
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 420, 100, 40));
+
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 110, 40));
+
+        txtNumeroSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroSalaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtNumeroSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 210, 30));
+
+        jLabel2.setText("Numero Maximo De Visitantes");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, 30));
+
+        jLabel3.setText("Numero Da Sala");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, 20));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 690, 240));
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 100, 40));
+
+        txtMaximoVisitantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaximoVisitantesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtMaximoVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
+
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+
+        ControleGerenciarSala controle = new ControleGerenciarSala();
+        
+        Sala sala = new Sala();
+        
+        sala.setMaximoDeVisitantes(Integer.parseInt(txtMaximoVisitantes.getText()));
+        sala.setNumeroSala(Integer.parseInt(txtNumeroSala.getText()));
+
+        controle.registrarSala(sala);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void txtNumeroSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroSalaActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtMaximoVisitantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaximoVisitantesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaximoVisitantesActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.fatec.museu.util.GradientButton btnAlterar;
+    private com.fatec.museu.util.GradientButton btnDeletar;
+    private com.fatec.museu.util.GradientButton btnRegistrar;
+    private com.fatec.museu.util.GradientButton btnVoltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField txtMaximoVisitantes;
+    private javax.swing.JTextField txtNumeroSala;
     // End of variables declaration//GEN-END:variables
 }

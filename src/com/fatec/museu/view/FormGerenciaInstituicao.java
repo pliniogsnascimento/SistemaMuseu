@@ -172,7 +172,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_gradientButton3ActionPerformed
 
     private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
     }//GEN-LAST:event_gradientButton4ActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
