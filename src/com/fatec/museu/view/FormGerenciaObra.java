@@ -5,12 +5,16 @@
  */
 package com.fatec.museu.view;
 
+import com.fatec.museu.controllers.ControleGerenciarAcervo;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Panda
  */
 public class FormGerenciaObra extends javax.swing.JInternalFrame {
     static private FormGerenciaObra instanciaObra;
+    private ControleGerenciarAcervo controle = new ControleGerenciarAcervo();
     /**
      * Creates new form FormGerenciaObra
      */
@@ -54,12 +58,29 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         gradientButton4 = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_dados = new javax.swing.JTable();
         gradientButton6 = new com.fatec.museu.util.GradientButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gradientButton2.setText("Cadastrar");
@@ -145,7 +166,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         gradientButton4.setText("Excluir");
         getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 710, 110, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_dados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -156,7 +177,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_dados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1050, 260));
 
@@ -212,6 +233,11 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton6ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna());
+        tb_dados.setModel(tableModel);
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton gradientButton1;
@@ -233,11 +259,11 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tb_dados;
     // End of variables declaration//GEN-END:variables
 }
