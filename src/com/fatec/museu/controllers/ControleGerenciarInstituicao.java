@@ -9,6 +9,8 @@ import com.fatec.museu.dao.DAO;
 import com.fatec.museu.model.Instituicao;
 import com.fatec.museu.util.FactoryDAO;
 import com.fatec.museu.util.FactoryInstituicaoDAO;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -20,6 +22,37 @@ public class ControleGerenciarInstituicao {
     public void registrarInstituicao(Instituicao inst){
         DAO instDAO = factory.criarDao();
         instDAO.salvar(inst);
+    }
+    
+    public Vector carregaColunas() {
+        Vector colunas = new Vector();
+        
+        colunas.add("ID");
+        colunas.add("Nome");
+        colunas.add("Telefone");
+        colunas.add("Endereço");
+        
+        return colunas;
+    }
+    
+    public Vector carregaLinhas() {
+        Vector linhas = new Vector();
+        
+        DAO instituicaoDao = factory.criarDao();
+        List<Instituicao> instituicoes = instituicaoDao.listarTodos();
+        
+        for(Instituicao instituicao:instituicoes) {
+            Vector registro = new Vector();
+            
+            registro.add(instituicao.getIdInstituicao());
+            registro.add(instituicao.getNome());
+            registro.add(instituicao.getTelefone());
+            registro.add(instituicao.getEndereco());
+            
+            linhas.add(registro);
+        }
+        
+        return linhas;
     }
     
 }

@@ -46,7 +46,7 @@ public class TesteInstituicaoDAO {
     public static void main(String[] args) {
         TesteInstituicaoDAO teste = new TesteInstituicaoDAO();
         //teste.testeSalvar();
-        //teste.testeListar();
+        teste.testeListar();
         //teste.testeBuscar();
         //teste.testeExcluir();
     }

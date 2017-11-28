@@ -7,12 +7,14 @@ package com.fatec.museu.view;
     
 import com.fatec.museu.controllers.ControleGerenciarInstituicao;
 import com.fatec.museu.model.Instituicao;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Panda
  */
 public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
+    private ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
     static private FormGerenciaInstituicao instanciaInstituicao; 
 
     /**
@@ -42,7 +44,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         gradientButton3 = new com.fatec.museu.util.GradientButton();
         gradientButton4 = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbDados = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -54,6 +56,23 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         gradientButton7 = new com.fatec.museu.util.GradientButton();
         gradientButton8 = new com.fatec.museu.util.GradientButton();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gradientButton5.setText("Alterar");
@@ -80,7 +99,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         });
         getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 110, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,7 +110,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbDados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 740, 270));
 
@@ -119,8 +138,8 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Gerenciar Institução");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 350, 80));
+        jLabel1.setText("Gerenciar Instituição");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 360, 80));
 
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -195,6 +214,11 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton8ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas());
+        tbDados.setModel(tableModel);
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton gradientButton3;
@@ -208,7 +232,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbDados;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JFormattedTextField txtTelefone;
