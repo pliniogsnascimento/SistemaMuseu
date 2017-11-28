@@ -6,6 +6,7 @@
 package com.fatec.museu.view;
 
 import com.fatec.museu.controllers.ControleGerenciarAcervo;
+import javax.swing.table.DefaultTableModel;
 import com.fatec.museu.model.Obra;
 import java.io.File;
 import java.text.ParseException;
@@ -15,6 +16,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+
 
 /**
  *
@@ -29,7 +31,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     public FormGerenciaObra() {
         initComponents();
     }
-    
+
     public static FormGerenciaObra getInstance() {
         if(instanciaObra == null) {
             instanciaObra = new FormGerenciaObra();
@@ -66,7 +68,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         btnExcluir = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_dados = new javax.swing.JTable();
         btnAlterar = new com.fatec.museu.util.GradientButton();
         txtDataObra = new javax.swing.JFormattedTextField();
         rdbObraFisica = new javax.swing.JRadioButton();
@@ -74,6 +76,23 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDadosBiograficos = new javax.swing.JTextArea();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCadastrar.setText("Cadastrar");
@@ -162,7 +181,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, 110, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_dados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -173,7 +192,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_dados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1070, 240));
 
@@ -242,31 +261,31 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+
         Obra obra = new Obra();
         //SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        
-      
+
+
         obra.setAutor(txtAutor.getText());
         obra.setDadosBiograficos(txtDadosBiograficos.getText());
         obra.setTitulo(txtTitulo.getText());
         obra.setCategoria(cmbTipoObra.getSelectedItem().toString());
-       
+
         String xgh = txtDataObra.getText();
         String[] parts = xgh.split("/");
-        String part1 = parts[0]; 
-        String part2 = parts[1]; 
+        String part1 = parts[0];
+        String part2 = parts[1];
         String part3 = parts[2];
-        
+
         int day = Integer.parseInt(part1);
         int month = Integer.parseInt(part2) - 1;
         int year = Integer.parseInt(part3);
-        
+
         obra.setDataDeObra(new GregorianCalendar(year,month,day));
-        
-        
-        
-        
+
+
+
+
         /*
         try {
             obra.setDataDeObra(format.parse(txtDataObra.getText()));
@@ -275,27 +294,34 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
-        
+
         obra.setCategoria(txtCategoria.getText());
         obra.setDoadorDeObra(txtDoadorObra.getText());
-        
+
         if(rdbObraFisica.isSelected())
             obra.setTipoDeObra("Fisico");
         else
             obra.setTipoDeObra("Virtual");
-        
+
         controle.registrarObra(obra);
-        
-        
+
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void rdbObraFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbObraFisicaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbObraFisicaActionPerformed
 
+
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna());
+        tb_dados.setModel(tableModel);
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,8 +341,13 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+   
+
+
+    private javax.swing.JTable tb_dados;
+
     private javax.swing.JLabel lblImagem;
     private javax.swing.JRadioButton rdbObraFisica;
     private javax.swing.JRadioButton rdbObraVirtual;
@@ -326,5 +357,6 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtDataObra;
     private javax.swing.JTextField txtDoadorObra;
     private javax.swing.JTextField txtTitulo;
+
     // End of variables declaration//GEN-END:variables
 }
