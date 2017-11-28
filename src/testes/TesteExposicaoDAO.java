@@ -1,4 +1,4 @@
-/*
+
 package testes;
 
 import com.fatec.museu.dao.DAO;
@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class TesteExposicaoDAO {
-    
+    /*
     private Exposicao exposicao;
     private DAO dao;
     FactoryDAO factory = new FactoryExposicaoDAO();
@@ -49,11 +49,12 @@ public class TesteExposicaoDAO {
         /*
         ObraDAO obDao = new ObraDAO();
         obDao.desvincularExposicao(exposicao.getIdExposicao());
-        */
-/*
+        
+
         dao.excluir(exposicao);
         System.out.println("Exposição excluida com sucesso");
     }
+*/
     
     public static void main(String[] args) {
         TesteExposicaoDAO teste = new TesteExposicaoDAO();
@@ -65,4 +66,4 @@ public class TesteExposicaoDAO {
         //teste.testeExcluir();
     }
     
-//}
+}

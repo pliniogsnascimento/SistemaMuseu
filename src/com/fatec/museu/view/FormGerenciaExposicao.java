@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +26,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     static private FormGerenciaExposicao instanciaExposicao;
     
     private List<Obra> obras = new LinkedList();
+    private ControleGerenciarExposicao controle = new ControleGerenciarExposicao();
     
     
     public FormGerenciaExposicao() {
@@ -57,7 +60,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         cmbSala = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbDados = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         cmbObra = new javax.swing.JComboBox<>();
         gradientButton4 = new com.fatec.museu.util.GradientButton();
@@ -116,7 +119,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
         cmbSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,7 +130,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbDados);
 
         jLabel6.setText("Obra");
 
@@ -274,8 +277,6 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
     private void gradientButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton2ActionPerformed
         
-        
-        ControleGerenciarExposicao controle = new ControleGerenciarExposicao();
         Exposicao expo;
         Sala sala = new Sala();
         
@@ -346,6 +347,15 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtDataTermino.setEditable(false);
+        
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
+        tbDados.setModel(tableModel);
+        
+        DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
+        cmbObra.setModel(cmbObraModel);
+        
+        DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
+        cmbSala.setModel(cmdSalaModel);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void rdbTemporarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbTemporarioMouseClicked
@@ -371,8 +381,8 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JRadioButton rdbTemporario;
+    private javax.swing.JTable tbDados;
     private javax.swing.JFormattedTextField txtDataInicio;
     private javax.swing.JFormattedTextField txtDataTermino;
     private javax.swing.JTextField txtNome;
