@@ -7,12 +7,14 @@ package com.fatec.museu.view;
 
 import com.fatec.museu.controllers.ControleGerenciarAcervo;
 import com.fatec.museu.model.Obra;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -226,7 +228,12 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDoadorObraActionPerformed
 
     private void btnProcurarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarImagemActionPerformed
-        // TODO add your handling code here:
+        String caminho = " ";
+        JFileChooser jchooser = new JFileChooser();
+        jchooser.showOpenDialog(null);
+        File f = jchooser.getCurrentDirectory();
+        //String filename = getAbsolutePath();
+       // path.setText(f);
     }//GEN-LAST:event_btnProcurarImagemActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
