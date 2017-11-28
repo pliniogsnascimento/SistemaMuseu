@@ -1,3 +1,4 @@
+/*
 package testes;
 
 import com.fatec.museu.dao.DAO;
@@ -40,6 +41,7 @@ public class TesteObraDAO {
         obra.setAcervo(new Acervo());
         obra.getAcervo().setIdAcervo(4L);
         */
+/*
         System.out.println(obra);
         dao.salvar(obra);
     }
@@ -77,3 +79,4 @@ public class TesteObraDAO {
     }
     
 }
+*/

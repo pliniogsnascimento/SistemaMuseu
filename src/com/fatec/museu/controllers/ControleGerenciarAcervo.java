@@ -10,12 +10,12 @@ import java.util.Vector;
 
 public class ControleGerenciarAcervo {
     
-    private FactoryDAO factoryDao;
+    private FactoryDAO factory;
     private DAO obraDao;
     
     public ControleGerenciarAcervo() {
-        factoryDao = new FactoryObraDAO();
-        obraDao = factoryDao.criarDao();
+        factory = new FactoryObraDAO();
+        obraDao = factory.criarDao();
     }
     
     public Vector carregaColuna() {
@@ -63,5 +63,10 @@ public class ControleGerenciarAcervo {
         }
         
         return linhas;
+    }
+
+    public void registrarObra(Obra obra){
+        DAO obraDAO = factory.criarDao();
+        obraDAO.salvar(obra);
     }
 }
