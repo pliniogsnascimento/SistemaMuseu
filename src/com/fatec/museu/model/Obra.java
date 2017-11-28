@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,9 +31,14 @@ public class Obra implements Serializable {
     private String autor;
     private String dadosBiograficos;
     private String doadorDeObra;
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_acervo")
     private Acervo acervo;
+    */
+    private String acervo;
+    @Lob
+    private byte[] imagem;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_exposicao")
     private Exposicao exposicao;
@@ -41,22 +46,22 @@ public class Obra implements Serializable {
     public Long getIdObra() {
         return idObra;
     }
-
+    
     public void setIdObra(Long idObra) {
         this.idObra = idObra;
     }
-	
+    
     public String getTipoDeObra() {
-	return tipoDeObra;
+        return tipoDeObra;
     }
     public void setTipoDeObra(String tipoDeObra) {
-	this.tipoDeObra = tipoDeObra;
+        this.tipoDeObra = tipoDeObra;
     }
-
+    
     public String getTitulo() {
         return titulo;
     }
-
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -68,55 +73,55 @@ public class Obra implements Serializable {
     public void setDataDeObra(Calendar dataDeObra) {
         this.dataDeObra = dataDeObra;
     }
-
+    
     public String getCategoria() {
         return categoria;
     }
-
+    
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
+    
     public String getAutor() {
         return autor;
     }
-
+    
     public void setAutor(String autor) {
         this.autor = autor;
     }
-
+    
     public String getDadosBiograficos() {
         return dadosBiograficos;
     }
-
+    
     public void setDadosBiograficos(String dadosBiograficos) {
         this.dadosBiograficos = dadosBiograficos;
     }
-
+    
     public String getDoadorDeObra() {
         return doadorDeObra;
     }
-
+    
     public void setDoadorDeObra(String doadorDeObra) {
         this.doadorDeObra = doadorDeObra;
     }
-
+    /*
     public Acervo getAcervo() {
-        return acervo;
+    return acervo;
     }
-
+    
     public void setAcervo(Acervo acervo) {
-        this.acervo = acervo;
+    this.acervo = acervo;
     }
-
+    */
     public Exposicao getExposicao() {
         return exposicao;
     }
-
+    
     public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -132,7 +137,7 @@ public class Obra implements Serializable {
         hash = 59 * hash + Objects.hashCode(this.exposicao);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -177,15 +182,33 @@ public class Obra implements Serializable {
         }
         return true;
     }
-
+    
+    public String getAcervo() {
+        return acervo;
+    }
+    
+    public void setAcervo(String acervo) {
+        this.acervo = acervo;
+    }
+    
+    public byte[] getImagem() {
+        return imagem;
+    }
+    
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    
+    
+    
     @Override
     public String toString() {
-        return "Obra{" + "idObra=" + idObra + ", titulo=" + titulo + 
-                ", dataDeObra=" + dataDeObra + ", tipoDeObra=" + tipoDeObra + 
-                ", categoria=" + categoria + ", autor=" + autor + 
-                ", dadosBiograficos=" + dadosBiograficos + ", doadorDeObra=" + doadorDeObra + 
+        return "Obra{" + "idObra=" + idObra + ", titulo=" + titulo +
+                ", dataDeObra=" + dataDeObra + ", tipoDeObra=" + tipoDeObra +
+                ", categoria=" + categoria + ", autor=" + autor +
+                ", dadosBiograficos=" + dadosBiograficos + ", doadorDeObra=" + doadorDeObra +
                 ", acervo=" + acervo +/* ", exposicao=" + exposicao +*/ '}';
     }
     
-        
+    
 }
