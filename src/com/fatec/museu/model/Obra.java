@@ -1,6 +1,7 @@
 package com.fatec.museu.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class Obra implements Serializable {
     private Long idObra;
     private String titulo;
     @Temporal(TemporalType.DATE)
-    private Date dataDeObra;
+    private Calendar dataDeObra;
     private String tipoDeObra;
     private String categoria;
     private String autor;
@@ -64,12 +65,12 @@ public class Obra implements Serializable {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    
-    public Date getDataDeObra() {
+
+    public Calendar getDataDeObra() {
         return dataDeObra;
     }
-    
-    public void setDataDeObra(Date dataDeObra) {
+
+    public void setDataDeObra(Calendar dataDeObra) {
         this.dataDeObra = dataDeObra;
     }
     
