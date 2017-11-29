@@ -86,6 +86,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDadosBiograficos = new javax.swing.JTextArea();
 
+        setPreferredSize(new java.awt.Dimension(1100, 800));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -174,7 +175,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, 30));
 
         lblImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
+        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 390, 240));
 
         btnProcurarImagem.setText("Procurar Imagem");
         btnProcurarImagem.addActionListener(new java.awt.event.ActionListener() {
