@@ -8,6 +8,7 @@ package com.fatec.museu.view;
 import com.fatec.museu.controllers.ControleGerenciarAcervo;
 import javax.swing.table.DefaultTableModel;
 import com.fatec.museu.model.Obra;
+import java.awt.Dimension;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -101,7 +102,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 110, 40));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 120, 40));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +110,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 660, 100, 40));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 650, 100, 40));
 
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +180,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         btnExcluir.setText("Excluir");
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, 110, 40));
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 110, 40));
 
         tb_dados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,7 +195,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tb_dados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1070, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 1070, 240));
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +203,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 660, 110, 40));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 650, 110, 40));
 
         try {
             txtDataObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -211,6 +212,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         }
         getContentPane().add(txtDataObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 200, 30));
 
+        btngTipoObra.add(rdbObraFisica);
         rdbObraFisica.setText("Obra Física");
         rdbObraFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +221,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         });
         getContentPane().add(rdbObraFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, -1, -1));
 
+        btngTipoObra.add(rdbObraVirtual);
         rdbObraVirtual.setText("Obra Virtual");
         getContentPane().add(rdbObraVirtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
 
@@ -320,6 +323,15 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna());
         tb_dados.setModel(tableModel);
+        
+        try{
+            instanciaObra.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaObra.setMaximizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+            instanciaObra.setPreferredSize(new Dimension(700, 500));
+            
+         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
 
@@ -341,22 +353,16 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-
     private javax.swing.JScrollPane jScrollPane2;
-   
-
-
-    private javax.swing.JTable tb_dados;
-
     private javax.swing.JLabel lblImagem;
     private javax.swing.JRadioButton rdbObraFisica;
     private javax.swing.JRadioButton rdbObraVirtual;
+    private javax.swing.JTable tb_dados;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextArea txtDadosBiograficos;
     private javax.swing.JFormattedTextField txtDataObra;
     private javax.swing.JTextField txtDoadorObra;
     private javax.swing.JTextField txtTitulo;
-
     // End of variables declaration//GEN-END:variables
 }

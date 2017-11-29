@@ -242,7 +242,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         //diz que a janela interna é maximizável
         instancia.setMaximizable(true);
         //set o tamanho máximo dela, que depende da janela pai
-        instancia.setMaximum(true);        // TODO add your handling code here:
+        instancia.setPreferredSize(new java.awt.Dimension(300, 300));
          } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
