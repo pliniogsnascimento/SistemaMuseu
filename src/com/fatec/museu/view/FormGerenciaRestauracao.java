@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     static private FormGerenciaRestauracao instancia;
     private ControleGerenciarRestauracao controle = new ControleGerenciarRestauracao();
+    private Long id;
     /**
      * Creates new form FormGerenciaRestauracao
      */

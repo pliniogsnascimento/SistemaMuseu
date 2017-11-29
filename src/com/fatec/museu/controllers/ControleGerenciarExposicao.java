@@ -108,4 +108,11 @@ public class ControleGerenciarExposicao {
         
         return salaSemExposicao;
     }
+
+    public void atualizarExposicao(Exposicao exposicao) {
+        DAO expoDAO = factory.criarDao();
+        expoDAO.salvar(exposicao);
+        
+        JOptionPane.showMessageDialog(null, "Exposição atualizada com sucesso!");
+    }
 }

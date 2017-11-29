@@ -59,4 +59,10 @@ public class ControleGerenciarSala {
         
         return colunas;
     }
+
+    public void atualizarSala(Sala sala) {
+        DAO SalaDAO = factory.criarDao();
+        SalaDAO.salvar(sala);
+        JOptionPane.showMessageDialog(null, "Sala atualizada com sucesso!");
+    }
 }

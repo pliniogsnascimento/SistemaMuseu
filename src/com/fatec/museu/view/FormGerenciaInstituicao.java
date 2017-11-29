@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
     static private FormGerenciaInstituicao instanciaInstituicao;
+    private Instituicao inst = new Instituicao();
     
     /**
      * Creates new form FormGerenciaInstituicao
@@ -41,8 +42,10 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         btnAlterar = new com.fatec.museu.util.GradientButton();
+
         btnCadastrar = new com.fatec.museu.util.GradientButton();
         btnVoltar = new com.fatec.museu.util.GradientButton();
+
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDados = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
@@ -77,6 +80,14 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAlterar.setText("Alterar");
+
+
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
+
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -185,6 +196,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
     
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Instituicao inst = new Instituicao();
         
@@ -192,7 +204,6 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         inst.setNome(txtNome.getText());
         inst.setTelefone(txtTelefone.getText());
         
-        ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
         controle.registrarInstituicao(inst);
         
         carregarDados();
@@ -247,21 +258,37 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
 
 
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
-         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
+
         btnCadastrar.setEnabled(false);
+
+        
+        inst.setIdInstituicao(Long.parseLong(model.getValueAt(selectedRowIndex, 0).toString()));
+
         txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
         txtEndereco.setText(model.getValueAt(selectedRowIndex, 3).toString());
         txtTelefone.setText(model.getValueAt(selectedRowIndex, 2).toString());
     }//GEN-LAST:event_tbDadosMouseClicked
 
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        inst.setEndereco(txtEndereco.getText());
+        inst.setNome(txtNome.getText());
+        inst.setTelefone(txtTelefone.getText());
+        
+        controle.atualizarInstituicao(inst);
+        
+    }//GEN-LAST:event_btnAlterarMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton btnAlterar;
+
     private com.fatec.museu.util.GradientButton btnCadastrar;
     private com.fatec.museu.util.GradientButton btnRemover;
     private com.fatec.museu.util.GradientButton btnVoltar;
+
     private com.fatec.museu.util.GradientButton gradientButton7;
     private com.fatec.museu.util.GradientButton gradientButton8;
     private javax.swing.JLabel jLabel1;
