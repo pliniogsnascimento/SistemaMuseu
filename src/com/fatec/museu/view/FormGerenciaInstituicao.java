@@ -56,6 +56,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         gradientButton7 = new com.fatec.museu.util.GradientButton();
         gradientButton8 = new com.fatec.museu.util.GradientButton();
 
+        setPreferredSize(new java.awt.Dimension(800, 600));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -112,7 +113,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 740, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 760, 270));
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +133,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
 
         jLabel4.setText("Telefone");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 70, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 70, 30));
 
         jLabel3.setText("Nome da Instituição");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
@@ -146,7 +147,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 129, 220, 30));
+        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 220, 30));
 
         gradientButton6.setText("Remover");
         gradientButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +218,14 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas());
         tbDados.setModel(tableModel);
+        try{
+            instanciaInstituicao.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaInstituicao.setMaximizable(false);
+            instanciaInstituicao.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+        } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
 

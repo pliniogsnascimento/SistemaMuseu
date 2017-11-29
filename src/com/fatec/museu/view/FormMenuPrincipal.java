@@ -99,6 +99,11 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(menuRestauracao);
 
         menuSala.setText("Salas");
+        menuSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSalaMouseClicked(evt);
+            }
+        });
         menuSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSalaActionPerformed(evt);
@@ -183,15 +188,7 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuExposicaoMouseClicked
 
     private void menuSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalaActionPerformed
-       FormGerenciaSala formulario = FormGerenciaSala.getInstance();
-        for(JInternalFrame f : deskPane1.getAllFrames()) {
-            if(f.equals(formulario)) {
-                formulario.setVisible(true);
-                return;
-            }
-        }
-        deskPane1.add(formulario);
-        formulario.setVisible(true);
+      
     }//GEN-LAST:event_menuSalaActionPerformed
 
     private void menuInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInstituicaoActionPerformed
@@ -209,6 +206,18 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         deskPane1.add(formulario);
         formulario.setVisible(true);
     }//GEN-LAST:event_menuInstituicaoMouseClicked
+
+    private void menuSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSalaMouseClicked
+       FormGerenciaSala formulario = FormGerenciaSala.getInstance();
+        for(JInternalFrame f : deskPane1.getAllFrames()) {
+            if(f.equals(formulario)) {
+                formulario.setVisible(true);
+                return;
+            }
+        }
+        deskPane1.add(formulario);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_menuSalaMouseClicked
 
 /**
  * @param args the command line arguments

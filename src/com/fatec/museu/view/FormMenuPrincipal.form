@@ -35,6 +35,7 @@
             <Property name="text" type="java.lang.String" value="Salas"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuSalaMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSalaActionPerformed"/>
           </Events>
         </Menu>

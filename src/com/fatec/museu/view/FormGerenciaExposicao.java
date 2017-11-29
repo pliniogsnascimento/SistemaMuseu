@@ -68,6 +68,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         txtDataTermino = new javax.swing.JFormattedTextField();
         rdbTemporario = new javax.swing.JRadioButton();
 
+        setPreferredSize(new java.awt.Dimension(850, 610));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -97,7 +98,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 gradientButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 100, 40));
+        getContentPane().add(gradientButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 100, 40));
 
         gradientButton3.setText("Adicionar Obra");
         gradientButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +143,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 240));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 820, 240));
 
         jLabel6.setText("Obra");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 30, 20));
@@ -188,7 +189,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 rdbTemporarioActionPerformed(evt);
             }
         });
-        getContentPane().add(rdbTemporario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 100, -1));
+        getContentPane().add(rdbTemporario, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
