@@ -2,6 +2,7 @@ package com.fatec.museu.controllers;
 
 import com.fatec.museu.dao.DAO;
 import com.fatec.museu.model.Obra;
+import com.fatec.museu.util.FactoryAcervoDAO;
 import com.fatec.museu.util.FactoryDAO;
 import com.fatec.museu.util.FactoryObraDAO;
 import java.text.SimpleDateFormat;
@@ -70,6 +71,21 @@ public class ControleGerenciarAcervo {
         
         return linhas;
     }
+    
+    
+    public byte[] buscarFotoObra(Long id){
+        factory = new FactoryObraDAO();
+        DAO obraDAO = factory.criarDao();
+        Obra obraid = new Obra();
+        obraid.setIdObra(id);
+        
+        obraid = (Obra)obraDAO.buscar(obraid);
+        
+        return obraid.getImagem();
+    }
+    
+    
+    
 
     public void registrarObra(Obra obra){
         DAO obraDAO = factory.criarDao();

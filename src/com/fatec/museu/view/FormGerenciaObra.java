@@ -347,6 +347,10 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             obra.setTipoDeObra("Fisico");
         else
             obra.setTipoDeObra("Virtual");
+        
+        
+        obra.setImagem(byteArray);
+        
 
         controle.registrarObra(obra);
 
@@ -385,7 +389,37 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void tb_dadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_dadosMouseClicked
-        // TODO add your handling code here:
+         
+        DefaultTableModel model = (DefaultTableModel)tb_dados.getModel();
+        int selectedRowIndex = tb_dados.getSelectedRow();
+        
+        txtTitulo.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtDataObra.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        txtAutor.setText(model.getValueAt(selectedRowIndex, 4).toString());
+        txtCategoria.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        txtDadosBiograficos.setText(model.getValueAt(selectedRowIndex, 6).toString());
+        txtDoadorObra.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        
+        if(model.getValueAt(selectedRowIndex, 3).toString() == "Físico"){
+            rdbObraFisica.setSelected(true);
+        } else {
+            rdbObraVirtual.setSelected(true);
+        }
+        
+        
+        
+        byte[] imagebyte = controle.buscarFotoObra((Long)(model.getValueAt(selectedRowIndex, 0)));
+        Image image = getToolkit().createImage(imagebyte);
+        
+       
+        
+   
+        Image diminuirImagem = image.getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), 0);
+         ImageIcon icon = new ImageIcon(diminuirImagem);
+        
+        lblImagem.setText("");
+        lblImagem.setIcon(icon);
+
     }//GEN-LAST:event_tb_dadosMouseClicked
 
 
