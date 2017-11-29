@@ -53,6 +53,23 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 750));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -183,6 +200,20 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
     private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton6ActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        try{
+            instanciaAcervo.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaAcervo.setMaximizable(false);
+            instanciaAcervo.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+            
+            
+      
+        } catch (java.beans.PropertyVetoException e) {}
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

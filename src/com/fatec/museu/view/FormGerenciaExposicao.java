@@ -267,6 +267,21 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtDataTermino.setEditable(false);
         
+        
+        
+        
+        try{
+            instanciaExposicao.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaExposicao.setMaximizable(false);
+            instanciaExposicao.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+            
+            
+      
+        } catch (java.beans.PropertyVetoException e) {}
+        
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
         tbDados.setModel(tableModel);
         

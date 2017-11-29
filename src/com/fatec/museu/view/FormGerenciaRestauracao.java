@@ -67,7 +67,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         txtDataEnvio = new javax.swing.JFormattedTextField();
         btnAlterar = new com.fatec.museu.util.GradientButton();
 
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setPreferredSize(new java.awt.Dimension(900, 600));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -105,7 +105,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 870, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 860, 190));
 
         btnRemover.setBorder(null);
         btnRemover.setText("Remover");
@@ -256,9 +256,13 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         try{
             instancia.setSelected(true);
             //diz que a janela interna é maximizável
-            instancia.setMaximizable(true);
+            instancia.setMaximizable(false);
+            instancia.setResizable(false);
             //set o tamanho máximo dela, que depende da janela pai
-            instancia.setMaximum(true);        // TODO add your handling code here:
+                   // TODO add your handling code here:
+            
+            
+      
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
     

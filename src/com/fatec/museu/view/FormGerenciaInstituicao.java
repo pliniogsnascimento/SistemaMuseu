@@ -218,6 +218,14 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas());
         tbDados.setModel(tableModel);
+        try{
+            instanciaInstituicao.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaInstituicao.setMaximizable(false);
+            instanciaInstituicao.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+        } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
 
