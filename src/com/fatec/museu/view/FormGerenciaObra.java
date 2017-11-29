@@ -9,14 +9,22 @@ import com.fatec.museu.controllers.ControleGerenciarAcervo;
 import javax.swing.table.DefaultTableModel;
 import com.fatec.museu.model.Obra;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -25,6 +33,7 @@ import javax.swing.JFileChooser;
  */
 public class FormGerenciaObra extends javax.swing.JInternalFrame {
     static private FormGerenciaObra instanciaObra;
+    private byte[] byteArray;
     private ControleGerenciarAcervo controle = new ControleGerenciarAcervo();
     /**
      * Creates new form FormGerenciaObra
@@ -193,6 +202,11 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_dados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_dadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_dados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 1070, 240));
@@ -251,12 +265,40 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDoadorObraActionPerformed
 
     private void btnProcurarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarImagemActionPerformed
-        String caminho = " ";
-        JFileChooser jchooser = new JFileChooser();
-        jchooser.showOpenDialog(null);
-        File f = jchooser.getCurrentDirectory();
-        //String filename = getAbsolutePath();
-       // path.setText(f);
+        
+        
+         BufferedImage imagemBuffer = null;
+        
+         JFileChooser buscaFoto = new JFileChooser();
+        
+        buscaFoto.setFileFilter(new FileNameExtensionFilter("Imagem", "bmp", "png", "jpg", "jpeg"));
+        buscaFoto.setAcceptAllFileFilterUsed(false);
+        
+         buscaFoto.setDialogTitle("Selecionar Imagem");
+        buscaFoto.showOpenDialog(this);
+        String caminho = ""+buscaFoto.getSelectedFile().getAbsolutePath();
+        try {
+            imagemBuffer = ImageIO.read(new File(caminho));
+        } catch (IOException ex) {
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image diminuirImagem = imagemBuffer.getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), 0);
+       
+        lblImagem.setText("");
+        
+        lblImagem.setIcon(new ImageIcon(diminuirImagem));
+        
+        
+        try {
+            byteArray = Files.readAllBytes(Paths.get(caminho));
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+   
     }//GEN-LAST:event_btnProcurarImagemActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -321,7 +363,15 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna());
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna()){
+            
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+         }
+            
+        };
         tb_dados.setModel(tableModel);
         
         try{
@@ -333,6 +383,10 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             
          } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tb_dadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_dadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_dadosMouseClicked
 
 
 
