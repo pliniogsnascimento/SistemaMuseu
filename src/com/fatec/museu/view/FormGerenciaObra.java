@@ -354,7 +354,8 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         
 
         controle.registrarObra(obra);
-
+        carregarDados();
+        
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -366,8 +367,8 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+    
+    private void carregarDados() {
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna()){
             
             @Override
@@ -378,6 +379,10 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             
         };
         tb_dados.setModel(tableModel);
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        carregarDados();
         
         try{
             instanciaObra.setSelected(true);

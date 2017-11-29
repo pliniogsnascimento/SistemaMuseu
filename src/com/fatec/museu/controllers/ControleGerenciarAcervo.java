@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 
 public class ControleGerenciarAcervo {
@@ -87,5 +88,6 @@ public class ControleGerenciarAcervo {
     public void registrarObra(Obra obra){
         DAO obraDAO = factory.criarDao();
         obraDAO.salvar(obra);
+        JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!");
     }
 }

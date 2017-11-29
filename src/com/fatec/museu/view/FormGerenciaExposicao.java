@@ -240,16 +240,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         
         controle.registrarExposicao(expo);
         
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
-        tbDados.setModel(tableModel);
-        
-        DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
-        cmbObra.setModel(cmbObraModel);
-        
-        DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
-        cmbSala.setModel(cmdSalaModel);
-        
-        
+        carregarDados();
         
     }//GEN-LAST:event_gradientButton2ActionPerformed
     
@@ -276,15 +267,8 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtDataTermino.setEditable(false);
+        carregarDados();
         
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
-        tbDados.setModel(tableModel);
-        
-        DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
-        cmbObra.setModel(cmbObraModel);
-        
-        DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
-        cmbSala.setModel(cmdSalaModel);
     }//GEN-LAST:event_formInternalFrameOpened
     
     private void rdbTemporarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbTemporarioMouseClicked
@@ -295,6 +279,22 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbTemporarioStateChanged
     
+    private void carregarDados() {
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        tbDados.setModel(tableModel);
+        
+        DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
+        cmbObra.setModel(cmbObraModel);
+        
+        DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
+        cmbSala.setModel(cmdSalaModel);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbObra;
