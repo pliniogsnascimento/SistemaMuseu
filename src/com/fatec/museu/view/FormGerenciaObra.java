@@ -148,7 +148,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, 30));
 
         jLabel5.setText("Autor");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 30, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 20));
 
         jLabel6.setText("Dados Biográficos");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 30));
@@ -341,22 +341,16 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-
     private javax.swing.JScrollPane jScrollPane2;
-   
-
-
-    private javax.swing.JTable tb_dados;
-
     private javax.swing.JLabel lblImagem;
     private javax.swing.JRadioButton rdbObraFisica;
     private javax.swing.JRadioButton rdbObraVirtual;
+    private javax.swing.JTable tb_dados;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextArea txtDadosBiograficos;
     private javax.swing.JFormattedTextField txtDataObra;
     private javax.swing.JTextField txtDoadorObra;
     private javax.swing.JTextField txtTitulo;
-
     // End of variables declaration//GEN-END:variables
 }
