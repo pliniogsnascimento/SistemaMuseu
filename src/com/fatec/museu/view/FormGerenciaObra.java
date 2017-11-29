@@ -8,14 +8,23 @@ package com.fatec.museu.view;
 import com.fatec.museu.controllers.ControleGerenciarAcervo;
 import javax.swing.table.DefaultTableModel;
 import com.fatec.museu.model.Obra;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
@@ -24,6 +33,7 @@ import javax.swing.JFileChooser;
  */
 public class FormGerenciaObra extends javax.swing.JInternalFrame {
     static private FormGerenciaObra instanciaObra;
+    private byte[] byteArray;
     private ControleGerenciarAcervo controle = new ControleGerenciarAcervo();
     /**
      * Creates new form FormGerenciaObra
@@ -76,6 +86,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDadosBiograficos = new javax.swing.JTextArea();
 
+        setPreferredSize(new java.awt.Dimension(1100, 800));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -101,7 +112,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 110, 40));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 350, 120, 40));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +120,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 660, 100, 40));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 680, 100, 40));
 
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +175,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 90, 30));
 
         lblImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 350, 240));
+        getContentPane().add(lblImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 390, 240));
 
         btnProcurarImagem.setText("Procurar Imagem");
         btnProcurarImagem.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +190,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         btnExcluir.setText("Excluir");
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, 110, 40));
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, 110, 40));
 
         tb_dados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,9 +203,14 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_dados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_dadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_dados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 1070, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 1070, 240));
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +218,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 660, 110, 40));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 110, 40));
 
         try {
             txtDataObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -211,6 +227,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         }
         getContentPane().add(txtDataObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 200, 30));
 
+        btngTipoObra.add(rdbObraFisica);
         rdbObraFisica.setText("Obra Física");
         rdbObraFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +236,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         });
         getContentPane().add(rdbObraFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, -1, -1));
 
+        btngTipoObra.add(rdbObraVirtual);
         rdbObraVirtual.setText("Obra Virtual");
         getContentPane().add(rdbObraVirtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 330, -1, -1));
 
@@ -248,12 +266,40 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDoadorObraActionPerformed
 
     private void btnProcurarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarImagemActionPerformed
-        String caminho = " ";
-        JFileChooser jchooser = new JFileChooser();
-        jchooser.showOpenDialog(null);
-        File f = jchooser.getCurrentDirectory();
-        //String filename = getAbsolutePath();
-       // path.setText(f);
+        
+        
+         BufferedImage imagemBuffer = null;
+        
+         JFileChooser buscaFoto = new JFileChooser();
+        
+        buscaFoto.setFileFilter(new FileNameExtensionFilter("Imagem", "bmp", "png", "jpg", "jpeg"));
+        buscaFoto.setAcceptAllFileFilterUsed(false);
+        
+         buscaFoto.setDialogTitle("Selecionar Imagem");
+        buscaFoto.showOpenDialog(this);
+        String caminho = ""+buscaFoto.getSelectedFile().getAbsolutePath();
+        try {
+            imagemBuffer = ImageIO.read(new File(caminho));
+        } catch (IOException ex) {
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Image diminuirImagem = imagemBuffer.getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), 0);
+       
+        lblImagem.setText("");
+        
+        lblImagem.setIcon(new ImageIcon(diminuirImagem));
+        
+        
+        try {
+            byteArray = Files.readAllBytes(Paths.get(caminho));
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+   
     }//GEN-LAST:event_btnProcurarImagemActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -302,6 +348,10 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             obra.setTipoDeObra("Fisico");
         else
             obra.setTipoDeObra("Virtual");
+        
+        
+        obra.setImagem(byteArray);
+        
 
         controle.registrarObra(obra);
 
@@ -318,9 +368,60 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna());
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColuna()){
+            
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+         }
+            
+        };
         tb_dados.setModel(tableModel);
+        
+        try{
+            instanciaObra.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaObra.setMaximizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+            instanciaObra.setPreferredSize(new Dimension(700, 500));
+            
+         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tb_dadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_dadosMouseClicked
+         
+        DefaultTableModel model = (DefaultTableModel)tb_dados.getModel();
+        int selectedRowIndex = tb_dados.getSelectedRow();
+        
+        txtTitulo.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtDataObra.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        txtAutor.setText(model.getValueAt(selectedRowIndex, 4).toString());
+        txtCategoria.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        txtDadosBiograficos.setText(model.getValueAt(selectedRowIndex, 6).toString());
+        txtDoadorObra.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        
+        if("Físico".equals(model.getValueAt(selectedRowIndex, 3).toString())){
+            rdbObraFisica.setSelected(true);
+        } else {
+            rdbObraVirtual.setSelected(true);
+        }
+        
+        
+        
+        byte[] imagebyte = controle.buscarFotoObra((Long)(model.getValueAt(selectedRowIndex, 0)));
+        Image image = getToolkit().createImage(imagebyte);
+        
+       
+        
+   
+        Image diminuirImagem = image.getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), 0);
+         ImageIcon icon = new ImageIcon(diminuirImagem);
+        
+        lblImagem.setText("");
+        lblImagem.setIcon(icon);
+
+    }//GEN-LAST:event_tb_dadosMouseClicked
 
 
 

@@ -13,15 +13,6 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuObraMouseClicked"/>
           </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuAcervo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Acervo"/>
-            <Property name="actionCommand" type="java.lang.String" value=""/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuAcervoMouseClicked"/>
-          </Events>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuExposicao">
           <Properties>
             <Property name="text" type="java.lang.String" value="Exposi&#xe7;&#xe3;o"/>

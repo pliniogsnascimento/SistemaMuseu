@@ -45,7 +45,6 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         deskPane1 = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
         menuObra = new javax.swing.JMenu();
-        menuAcervo = new javax.swing.JMenu();
         menuExposicao = new javax.swing.JMenu();
         menuRestauracao = new javax.swing.JMenu();
         menuSala = new javax.swing.JMenu();
@@ -77,15 +76,6 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(menuObra);
-
-        menuAcervo.setText("Acervo");
-        menuAcervo.setActionCommand("");
-        menuAcervo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuAcervoMouseClicked(evt);
-            }
-        });
-        jMenuBar2.add(menuAcervo);
 
         menuExposicao.setText("Exposição");
         menuExposicao.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,19 +170,6 @@ public class FormMenuPrincipal extends javax.swing.JFrame {
         formulario.setVisible(true);
     }//GEN-LAST:event_menuObraMouseClicked
 
-    private void menuAcervoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuAcervoMouseClicked
-        
-        FormGerenciaAcervo formulario = FormGerenciaAcervo.getInstance();
-        for(JInternalFrame f : deskPane1.getAllFrames()) {
-            if(f.equals(formulario)) {
-                formulario.setVisible(true);
-                return;
-            }
-        }
-        deskPane1.add(formulario);
-        formulario.setVisible(true);
-    }//GEN-LAST:event_menuAcervoMouseClicked
-
     private void menuExposicaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuExposicaoMouseClicked
         FormGerenciaExposicao formulario = FormGerenciaExposicao.getInstance();
         for(JInternalFrame f : deskPane1.getAllFrames()) {
@@ -272,7 +249,6 @@ new FormMenuPrincipal().setVisible(true);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane deskPane1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenu menuAcervo;
     private javax.swing.JMenu menuExposicao;
     private javax.swing.JMenu menuInstituicao;
     private javax.swing.JMenu menuObra;
