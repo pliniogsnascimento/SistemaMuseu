@@ -385,6 +385,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             instanciaObra.setMaximizable(false);
             //set o tamanho máximo dela, que depende da janela pai
             instanciaObra.setPreferredSize(new Dimension(700, 500));
+            instanciaObra.setResizable(false);
             
          } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
