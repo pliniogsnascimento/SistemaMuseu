@@ -120,7 +120,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 650, 100, 40));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 680, 100, 40));
 
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         btnExcluir.setText("Excluir");
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 110, 40));
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, 110, 40));
 
         tb_dados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,7 +218,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
                 btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 650, 110, 40));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 110, 40));
 
         try {
             txtDataObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -401,7 +401,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         txtDadosBiograficos.setText(model.getValueAt(selectedRowIndex, 6).toString());
         txtDoadorObra.setText(model.getValueAt(selectedRowIndex, 7).toString());
         
-        if(model.getValueAt(selectedRowIndex, 3).toString() == "Físico"){
+        if("Físico".equals(model.getValueAt(selectedRowIndex, 3).toString())){
             rdbObraFisica.setSelected(true);
         } else {
             rdbObraVirtual.setSelected(true);
