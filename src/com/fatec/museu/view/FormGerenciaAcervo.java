@@ -52,6 +52,7 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
+        setPreferredSize(new java.awt.Dimension(800, 750));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N

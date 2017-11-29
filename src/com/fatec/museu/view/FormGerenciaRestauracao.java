@@ -11,6 +11,7 @@ import com.fatec.museu.model.Obra;
 import com.fatec.museu.model.Restauracao;
 import java.beans.PropertyVetoException;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -119,7 +120,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 30, 15));
 
         jLabel3.setText("Nome da Instituição");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 100, 15));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, 15));
 
         jLabel4.setText("Telefone");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 70, -1));
@@ -149,6 +150,11 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, 105, 31));
 
         cmbNomeInstituicao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNomeInstituicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNomeInstituicaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbNomeInstituicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 280, 30));
 
         try {
@@ -241,18 +247,28 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
         tbDados.setModel(tableModel);
         
+        DefaultComboBoxModel cmdObraModel = new DefaultComboBoxModel(controle.carregaObras().toArray());
+        cmbObra.setModel(cmdObraModel);
+        
+        DefaultComboBoxModel cmbNomeInstituicaoModel = new DefaultComboBoxModel(controle.carregaInstituicao().toArray());
+        cmbNomeInstituicao.setModel(cmbNomeInstituicaoModel);
+        
         try{
-        instancia.setSelected(true);
-        //diz que a janela interna é maximizável
-        instancia.setMaximizable(true);
-        //set o tamanho máximo dela, que depende da janela pai
-        instancia.setPreferredSize(new java.awt.Dimension(300, 300));
-         } catch (java.beans.PropertyVetoException e) {}
+            instancia.setSelected(true);
+            //diz que a janela interna é maximizável
+            instancia.setMaximizable(true);
+            //set o tamanho máximo dela, que depende da janela pai
+            instancia.setMaximum(true);        // TODO add your handling code here:
+        } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void cmbNomeInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNomeInstituicaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNomeInstituicaoActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

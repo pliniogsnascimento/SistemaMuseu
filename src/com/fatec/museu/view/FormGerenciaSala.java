@@ -49,6 +49,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         txtMaximoVisitantes = new javax.swing.JTextField();
         btnAlterar = new com.fatec.museu.util.GradientButton();
 
+        setPreferredSize(new java.awt.Dimension(706, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -97,7 +98,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 690, 240));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 240));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {

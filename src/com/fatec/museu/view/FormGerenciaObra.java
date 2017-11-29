@@ -159,7 +159,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(txtAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, 30));
 
         jLabel5.setText("Autor");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 30, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 20));
 
         jLabel6.setText("Dados Biográficos");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 30));
@@ -385,6 +385,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
             instanciaObra.setMaximizable(false);
             //set o tamanho máximo dela, que depende da janela pai
             instanciaObra.setPreferredSize(new Dimension(700, 500));
+            instanciaObra.setResizable(false);
             
          } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
