@@ -141,6 +141,11 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDadosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbDados);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 820, 240));
@@ -279,6 +284,21 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     private void rdbTemporarioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbTemporarioStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbTemporarioStateChanged
+
+    private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
+         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        int selectedRowIndex = tbDados.getSelectedRow();
+        
+        txtDataInicio.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        cmbSala.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
+        
+        if(model.getValueAt(selectedRowIndex, 3).toString() != ""){
+            rdbTemporario.setSelected(true);
+            txtDataTermino.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        }
+        
+    }//GEN-LAST:event_tbDadosMouseClicked
     
     private void carregarDados() {
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()){
