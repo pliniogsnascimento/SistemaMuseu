@@ -115,7 +115,16 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+
+        tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDadosMouseClicked(evt);
+            }
+        });
+        
+
         jScrollPane2.setViewportView(tbDados);
+
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 240));
 
@@ -188,9 +197,18 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
             instaciaSala.setMaximizable(false);
             instaciaSala.setResizable(false);
             //set o tamanho máximo dela, que depende da janela pai
-                   // TODO add your handling code here:
+            // TODO add your handling code here:
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+         DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        int selectedRowIndex = jTable2.getSelectedRow();
+        
+        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        
+    }//GEN-LAST:event_jTable2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

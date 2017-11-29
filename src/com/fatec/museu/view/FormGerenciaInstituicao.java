@@ -111,6 +111,11 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 760, 270));
@@ -239,8 +244,19 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
             // TODO add your handling code here:
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
-    
-    
+
+
+    private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
+         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        int selectedRowIndex = tbDados.getSelectedRow();
+        
+        txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtEndereco.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        txtTelefone.setText(model.getValueAt(selectedRowIndex, 2).toString());
+    }//GEN-LAST:event_tbDadosMouseClicked
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton gradientButton3;
     private com.fatec.museu.util.GradientButton gradientButton4;
