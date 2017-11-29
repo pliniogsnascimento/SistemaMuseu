@@ -39,28 +39,30 @@ public class ObraDAO extends DAO<Obra> implements Desvinculavel {
         EntityManager em = super.getEntityManager();
         objeto = em.find(Obra.class, objeto.getIdObra());
         
-        em.getTransaction().begin();
+        
         
         if(objeto.getAcervo() != null || objeto.getExposicao() != null) {
             if(objeto.getAcervo() != null) {
-                Acervo acervo = objeto.getAcervo();
-                acervo.getObras().remove(objeto);
+                objeto.setAcervo(null);
+                salvar(objeto);
             }
             
             if(objeto.getExposicao() != null) {
+                /*
                 Exposicao exposicao = objeto.getExposicao();
                 exposicao.getObras().remove(objeto);
+                */
+                objeto.setExposicao(null);
+                salvar(objeto);
             }
             
-            em.getTransaction().commit();
         }
-        else {
-            em.remove(objeto);
-            em.getTransaction().commit();
-        }
+        em.getTransaction().begin();
+        
+        em.remove(objeto);
+        em.getTransaction().commit();
         
         em.close();
-        
         
     }
     
@@ -85,6 +87,14 @@ public class ObraDAO extends DAO<Obra> implements Desvinculavel {
                 salvar(obra);
             }
         }
+    }
+
+    public Obra buscarPorNome(String nome) {
+        EntityManager em = super.getEntityManager();
+        Obra obra = (Obra) em.createQuery("from Obra where titulo = ?1").setParameter(1, nome).getSingleResult();
+        em.close();
+        
+        return obra;
     }
     
 }

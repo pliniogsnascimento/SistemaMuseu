@@ -1,23 +1,44 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.fatec.museu.view;
+
+import com.fatec.museu.controllers.ControleGerenciarRestauracao;
+import com.fatec.museu.model.Instituicao;
+import com.fatec.museu.model.Obra;
+import com.fatec.museu.model.Restauracao;
+import java.beans.PropertyVetoException;
+import java.util.GregorianCalendar;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Panda
  */
 public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
-
+    static private FormGerenciaRestauracao instancia;
+    private ControleGerenciarRestauracao controle = new ControleGerenciarRestauracao();
     /**
      * Creates new form FormGerenciaRestauracao
      */
     public FormGerenciaRestauracao() {
         initComponents();
     }
-
+    
+    public static FormGerenciaRestauracao getInstance() {
+        if(instancia == null) {
+            instancia = new FormGerenciaRestauracao();
+        }
+        return instancia;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,30 +50,50 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        gradientButton3 = new com.fatec.museu.util.GradientButton();
-        jTextField1 = new javax.swing.JTextField();
+        tbDados = new javax.swing.JTable();
+        btnRemover = new com.fatec.museu.util.GradientButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        gradientButton4 = new com.fatec.museu.util.GradientButton();
-        gradientButton5 = new com.fatec.museu.util.GradientButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnVoltar = new com.fatec.museu.util.GradientButton();
+        btnCadastrar = new com.fatec.museu.util.GradientButton();
+        cmbNomeInstituicao = new javax.swing.JComboBox<>();
+        txtDataRetorno = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
+        txtDescricao = new javax.swing.JTextField();
+        cmbObra = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtDataEnvio = new javax.swing.JFormattedTextField();
+        btnAlterar = new com.fatec.museu.util.GradientButton();
 
+        setPreferredSize(new java.awt.Dimension(900, 600));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gerenciar Restauração");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, 45));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,144 +104,208 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 770, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 860, 190));
 
-        gradientButton3.setText("Remover");
-        gradientButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRemover.setBorder(null);
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton3ActionPerformed(evt);
+                btnRemoverActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 110, 40));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 210, 30));
+        getContentPane().add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 119, 31));
 
         jLabel2.setText("Obra");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 60, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 30, 15));
 
         jLabel3.setText("Nome da Instituição");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 170, 30));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 200, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, 15));
 
         jLabel4.setText("Telefone");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 60, 30));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 70, -1));
 
         jLabel6.setText("Data Prevista Para o Retorno");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, 30));
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 230, 100));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 180, 15));
 
         jLabel7.setText("Descricao");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 100, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setBorder(null);
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 200, 30));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 104, 31));
 
-        jLabel8.setText("Endereco");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 90, 30));
-
-        gradientButton4.setText("Voltar");
-        gradientButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setBorder(null);
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton4ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 110, 40));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, 105, 31));
 
-        gradientButton5.setText("Alterar");
-        gradientButton5.addActionListener(new java.awt.event.ActionListener() {
+        cmbNomeInstituicao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNomeInstituicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton5ActionPerformed(evt);
+                cmbNomeInstituicaoActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 110, 40));
+        getContentPane().add(cmbNomeInstituicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 280, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 170, 30));
+        try {
+            txtDataRetorno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(txtDataRetorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 250, 30));
+
+        try {
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, 250, 30));
+        getContentPane().add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 30));
+
+        cmbObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cmbObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 280, 30));
+
+        jLabel5.setText("Data de Envio");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 100, -1));
+
+        try {
+            txtDataEnvio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(txtDataEnvio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 250, 30));
+
+        btnAlterar.setBorder(null);
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 105, 31));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
+    
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton3ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_btnRemoverActionPerformed
+    
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+    
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        Restauracao rest = new Restauracao();
+        
+        rest.setDescricao(txtDescricao.getText());
+        rest.setInstituicao(controle.getInstituicaoPorNome((String) cmbNomeInstituicao.getSelectedItem()));
+        rest.setObra(controle.getObraPorNome((String) cmbObra.getSelectedItem()));
+        rest.setStatus("Solicitado");
+        
+        String xgh = txtDataEnvio.getText();
+        String[] parts = xgh.split("/");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+        
+        int day = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2) - 1;
+        int year = Integer.parseInt(part3);
+        
+        
+        rest.setDataDeEnvio(new GregorianCalendar(year,month,day));
+        
+        
+        String xgh2 = txtDataRetorno.getText();
+        String[] partes = xgh2.split("/");
+        String parte1 = partes[0];
+        String parte2 = partes[1];
+        String parte3 = partes[2];
+        
+        int days = Integer.parseInt(parte1);
+        int months = Integer.parseInt(parte2) - 1;
+        int years = Integer.parseInt(parte3);
+        
+        
+        rest.setDataDeRetorno(new GregorianCalendar(years,months,days));
+        
+        controle.registrarInstituicao(rest); 
+        carregarDados();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+    
+    private void carregarDados() {
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        tbDados.setModel(tableModel);
+        
+        DefaultComboBoxModel cmdObraModel = new DefaultComboBoxModel(controle.carregaObras().toArray());
+        cmbObra.setModel(cmdObraModel);
+        
+        DefaultComboBoxModel cmbNomeInstituicaoModel = new DefaultComboBoxModel(controle.carregaInstituicao().toArray());
+        cmbNomeInstituicao.setModel(cmbNomeInstituicaoModel);
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        carregarDados();
+        
+        try{
+            instancia.setSelected(true);
+            //diz que a janela interna é maximizável
+            instancia.setMaximizable(false);
+            instancia.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+            
+            
+      
+        } catch (java.beans.PropertyVetoException e) {}
+    }//GEN-LAST:event_formInternalFrameOpened
+    
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void cmbNomeInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNomeInstituicaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton4ActionPerformed
-
-    private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton5ActionPerformed
-
-
+    }//GEN-LAST:event_cmbNomeInstituicaoActionPerformed
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.fatec.museu.util.GradientButton gradientButton3;
-    private com.fatec.museu.util.GradientButton gradientButton4;
-    private com.fatec.museu.util.GradientButton gradientButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private com.fatec.museu.util.GradientButton btnAlterar;
+    private com.fatec.museu.util.GradientButton btnCadastrar;
+    private com.fatec.museu.util.GradientButton btnRemover;
+    private com.fatec.museu.util.GradientButton btnVoltar;
+    private javax.swing.JComboBox<String> cmbNomeInstituicao;
+    private javax.swing.JComboBox<String> cmbObra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tbDados;
+    private javax.swing.JFormattedTextField txtDataEnvio;
+    private javax.swing.JFormattedTextField txtDataRetorno;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

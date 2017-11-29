@@ -10,12 +10,19 @@ package com.fatec.museu.view;
  * @author Panda
  */
 public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
-
+    static private FormGerenciaAcervo instanciaAcervo;
     /**
      * Creates new form FormGerenciaAcervo
      */
     public FormGerenciaAcervo() {
         initComponents();
+    }
+    
+    public static FormGerenciaAcervo getInstance() {
+        if(instanciaAcervo== null) {
+            instanciaAcervo = new FormGerenciaAcervo();
+        }
+        return instanciaAcervo;
     }
 
     /**
@@ -28,7 +35,6 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -44,19 +50,31 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
         gradientButton6 = new com.fatec.museu.util.GradientButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
+        setPreferredSize(new java.awt.Dimension(800, 750));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Gerenciar Acervo");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 30));
 
         jLabel2.setText("Data da Obra");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 170, 30));
@@ -66,10 +84,10 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 30));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, 30));
 
         jLabel3.setText("Nome do Acervo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 90, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 120, 30));
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +130,7 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
                 gradientButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 120, 30));
+        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 130, 30));
 
         gradientButton4.setText("Voltar");
         gradientButton4.setActionCommand("");
@@ -145,12 +163,15 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
         jRadioButton2.setLabel("Acervo Físico");
         getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, -1, -1));
 
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 149, 150, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -180,12 +201,27 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton6ActionPerformed
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        try{
+            instanciaAcervo.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaAcervo.setMaximizable(false);
+            instanciaAcervo.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+                   // TODO add your handling code here:
+            
+            
+      
+        } catch (java.beans.PropertyVetoException e) {}
+    }//GEN-LAST:event_formInternalFrameOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton gradientButton3;
     private com.fatec.museu.util.GradientButton gradientButton4;
     private com.fatec.museu.util.GradientButton gradientButton5;
     private com.fatec.museu.util.GradientButton gradientButton6;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -195,7 +231,6 @@ public class FormGerenciaAcervo extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

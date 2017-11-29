@@ -20,9 +20,9 @@ public class InstituicaoDAO extends DAO<Instituicao> {
     @Override
     public List<Instituicao> listarTodos() {
         EntityManager em = super.getEntityManager();
-        List<Instituicao> exposicoes = em.createQuery("from Exposicao").getResultList();
+        List<Instituicao> instituicoes = em.createQuery("from Instituicao").getResultList();
         em.close();
-        return exposicoes;
+        return instituicoes;
     }
     
     @Override
@@ -44,6 +44,16 @@ public class InstituicaoDAO extends DAO<Instituicao> {
         objeto = em.find(Instituicao.class, objeto.getIdInstituicao());
         em.close();
         return objeto;
+    }
+
+    public Instituicao buscarPorNome(String nome) {
+        EntityManager em = super.getEntityManager();
+        
+        Instituicao instituicao =  (Instituicao) em.createQuery("from Instituicao where nome = ?1").setParameter(1, nome).getSingleResult();
+        
+        em.close();
+        
+        return instituicao;
     }
     
 }

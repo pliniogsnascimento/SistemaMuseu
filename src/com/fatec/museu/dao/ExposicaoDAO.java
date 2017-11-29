@@ -32,6 +32,9 @@ public class ExposicaoDAO extends DAO<Exposicao> {
         ObraDAO obraDao = new ObraDAO();
         obraDao.desvincularFK(objeto.getIdExposicao());
         
+        SalaDAO salaDao = new SalaDAO();
+        salaDao.desvincularFK(objeto.getIdExposicao());
+        
         EntityManager em = super.getEntityManager();
         objeto = em.find(Exposicao.class, objeto.getIdExposicao());
         

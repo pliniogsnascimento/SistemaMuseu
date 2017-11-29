@@ -1,23 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.fatec.museu.view;
+
+import com.fatec.museu.controllers.ControleGerenciarInstituicao;
+import com.fatec.museu.model.Instituicao;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Panda
  */
 public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
-
+    private ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
+    static private FormGerenciaInstituicao instanciaInstituicao;
+    
     /**
      * Creates new form FormGerenciaInstituicao
      */
     public FormGerenciaInstituicao() {
         initComponents();
     }
-
+    
+    public static FormGerenciaInstituicao getInstance() {
+        if(instanciaInstituicao == null) {
+            instanciaInstituicao = new FormGerenciaInstituicao();
+        }
+        return instanciaInstituicao;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,15 +44,36 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         gradientButton3 = new com.fatec.museu.util.GradientButton();
         gradientButton4 = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tbDados = new javax.swing.JTable();
+        txtNome = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JFormattedTextField();
+        gradientButton6 = new com.fatec.museu.util.GradientButton();
+        gradientButton7 = new com.fatec.museu.util.GradientButton();
+        gradientButton8 = new com.fatec.museu.util.GradientButton();
 
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gradientButton5.setText("Alterar");
@@ -50,13 +84,13 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         });
         getContentPane().add(gradientButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 110, 40));
 
-        gradientButton3.setText("Remover");
+        gradientButton3.setText("Cadastrar");
         gradientButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gradientButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
+        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 110, 40));
 
         gradientButton4.setText("Voltar");
         gradientButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -64,9 +98,9 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
                 gradientButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 110, 40));
+        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 110, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,84 +111,151 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 740, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 760, 270));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 200, 30));
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 200, 30));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtEnderecoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 200, 30));
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 200, 30));
+        getContentPane().add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 200, 30));
 
         jLabel8.setText("Endereco");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, 30));
 
         jLabel4.setText("Telefone");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 60, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 70, 30));
 
         jLabel3.setText("Nome da Instituição");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Gerenciar Institução");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 350, 80));
+        jLabel1.setText("Gerenciar Instituição");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 360, 80));
+
+        try {
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 220, 30));
+
+        gradientButton6.setText("Remover");
+        gradientButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradientButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gradientButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
+
+        gradientButton7.setText("Remover");
+        gradientButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradientButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gradientButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
+
+        gradientButton8.setText("Remover");
+        gradientButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradientButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gradientButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton5ActionPerformed
-
+    
     private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
-        // TODO add your handling code here:
+        Instituicao inst = new Instituicao();
+        
+        inst.setEndereco(txtEndereco.getText());
+        inst.setNome(txtNome.getText());
+        inst.setTelefone(txtTelefone.getText());
+        
+        ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
+        controle.registrarInstituicao(inst);
+        
+        carregarDados();
     }//GEN-LAST:event_gradientButton3ActionPerformed
-
+    
     private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_gradientButton4ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
+    
+    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtEnderecoActionPerformed
+    
+    private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
-
+    }//GEN-LAST:event_gradientButton6ActionPerformed
+    
+    private void gradientButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gradientButton7ActionPerformed
+    
+    private void gradientButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gradientButton8ActionPerformed
+    
+    private void carregarDados() {
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas()){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        tbDados.setModel(tableModel);
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        carregarDados();
+        try{
+            instanciaInstituicao.setSelected(true);
+            //diz que a janela interna é maximizável
+            instanciaInstituicao.setMaximizable(false);
+            instanciaInstituicao.setResizable(false);
+            //set o tamanho máximo dela, que depende da janela pai
+            // TODO add your handling code here:
+        } catch (java.beans.PropertyVetoException e) {}
+    }//GEN-LAST:event_formInternalFrameOpened
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton gradientButton3;
     private com.fatec.museu.util.GradientButton gradientButton4;
     private com.fatec.museu.util.GradientButton gradientButton5;
+    private com.fatec.museu.util.GradientButton gradientButton6;
+    private com.fatec.museu.util.GradientButton gradientButton7;
+    private com.fatec.museu.util.GradientButton gradientButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tbDados;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }
