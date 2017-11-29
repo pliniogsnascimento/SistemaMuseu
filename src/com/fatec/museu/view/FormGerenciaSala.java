@@ -22,7 +22,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     public FormGerenciaSala() {
         initComponents();
     }
-    
+
     public static FormGerenciaSala getInstance() {
         if(instaciaSala == null) {
             instaciaSala = new FormGerenciaSala();
@@ -121,7 +121,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
                 tbDadosMouseClicked(evt);
             }
         });
-        
+
 
         jScrollPane2.setViewportView(tbDados);
 
@@ -156,7 +156,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Sala sala = new Sala();
-        
+
         sala.setMaximoDeVisitantes(Integer.parseInt(txtMaximoVisitantes.getText()));
         sala.setNumeroSala(Integer.parseInt(txtNumeroSala.getText()));
 
@@ -183,12 +183,12 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
-    
+
     private void carregarDados() {
         DefaultTableModel model = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
         tbDados.setModel(model);
     }
-    
+
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         carregarDados();
         try{
@@ -201,13 +201,13 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-         DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
-        int selectedRowIndex = jTable2.getSelectedRow();
-        
+    private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        int selectedRowIndex = tbDados.getSelectedRow();
+
         txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 0).toString());
         txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        
+
     }//GEN-LAST:event_jTable2MouseClicked
 
 
