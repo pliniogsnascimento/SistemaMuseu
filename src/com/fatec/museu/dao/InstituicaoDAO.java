@@ -45,5 +45,15 @@ public class InstituicaoDAO extends DAO<Instituicao> {
         em.close();
         return objeto;
     }
+
+    public Instituicao buscarPorNome(String nome) {
+        EntityManager em = super.getEntityManager();
+        
+        Instituicao instituicao =  (Instituicao) em.createQuery("from Instituicao where nome = ?1").setParameter(1, nome).getSingleResult();
+        
+        em.close();
+        
+        return instituicao;
+    }
     
 }

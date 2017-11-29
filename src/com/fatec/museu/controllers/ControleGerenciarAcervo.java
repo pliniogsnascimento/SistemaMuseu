@@ -83,9 +83,6 @@ public class ControleGerenciarAcervo {
         
         return obraid.getImagem();
     }
-    
-    
-    
 
     public void registrarObra(Obra obra){
         DAO obraDAO = factory.criarDao();

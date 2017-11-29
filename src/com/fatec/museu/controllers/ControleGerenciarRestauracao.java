@@ -12,11 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import com.fatec.museu.dao.InstituicaoDAO;
+import com.fatec.museu.dao.ObraDAO;
 
 public class ControleGerenciarRestauracao {
     private FactoryDAO factory = new FactoryRestauracaoDAO();
     
     public void registrarInstituicao(Restauracao rest){
+        factory = new FactoryRestauracaoDAO();
         DAO restDAO = factory.criarDao();
         restDAO.salvar(rest);
     }
@@ -94,5 +97,19 @@ public class ControleGerenciarRestauracao {
         }
         
         return nomeInst;
+    }
+    
+    public Instituicao getInstituicaoPorNome(String nome) {
+        factory = new FactoryInstituicaoDAO();
+        InstituicaoDAO instituicaoDao = (InstituicaoDAO) factory.criarDao();
+        
+        return instituicaoDao.buscarPorNome(nome);
+    }
+    
+    public Obra getObraPorNome(String nome) {
+        factory = new FactoryObraDAO();
+        ObraDAO obraDao = (ObraDAO) factory.criarDao();
+        
+        return obraDao.buscarPorNome(nome);
     }
 }

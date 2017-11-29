@@ -62,7 +62,11 @@ public class ControleGerenciarExposicao {
             else {
                 registro.add("-");
             }
-            registro.add(exposicao.getSala().getNumeroSala());
+            
+            if(exposicao.getSala() != null) {
+                registro.add(exposicao.getSala().getNumeroSala());
+            }
+            
             
             linhas.add(registro);
         }

@@ -235,9 +235,9 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
        
        
        expo.setNome(txtNome.getText());
-       //expo.setSala();
+       expo.setSala(new Sala());
+       expo.getSala().setNumeroSala(Integer.parseInt((String) cmbSala.getSelectedItem()));
        expo.setObras(obras);
-       
        
        controle.registrarExposicao(expo);
 

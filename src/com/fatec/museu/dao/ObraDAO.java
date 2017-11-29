@@ -88,5 +88,13 @@ public class ObraDAO extends DAO<Obra> implements Desvinculavel {
             }
         }
     }
+
+    public Obra buscarPorNome(String nome) {
+        EntityManager em = super.getEntityManager();
+        Obra obra = (Obra) em.createQuery("from Obra where titulo = ?1").setParameter(1, nome).getSingleResult();
+        em.close();
+        
+        return obra;
+    }
     
 }
