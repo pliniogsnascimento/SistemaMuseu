@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.fatec.museu.view;
 
 import com.fatec.museu.controllers.ControleGerenciarExposicao;
@@ -39,7 +39,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         }
         return instanciaExposicao;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,77 +192,88 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void gradientButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton2ActionPerformed
         
         Exposicao expo;
         Sala sala = new Sala();
         
         if(rdbTemporario.isSelected())
-        expo = new Temporaria();
+            expo = new Temporaria();
         else
-        expo = new Exposicao();
+            expo = new Exposicao();
         
         if(rdbTemporario.isSelected()){
-       
-        String xgh = txtDataInicio.getText();
-        String[] parts = xgh.split("/");
-        String part1 = parts[0]; 
-        String part2 = parts[1]; 
-        String part3 = parts[2];
-        
-        int day = Integer.parseInt(part1);
-        int month = Integer.parseInt(part2) - 1;
-        int year = Integer.parseInt(part3);
-        
-        
-        expo.setDataTermino(new GregorianCalendar(year,month,day));
+            
+            String xgh = txtDataInicio.getText();
+            String[] parts = xgh.split("/");
+            String part1 = parts[0];
+            String part2 = parts[1];
+            String part3 = parts[2];
+            
+            int day = Integer.parseInt(part1);
+            int month = Integer.parseInt(part2) - 1;
+            int year = Integer.parseInt(part3);
+            
+            
+            expo.setDataTermino(new GregorianCalendar(year,month,day));
         }
         
         
-       String xgh2 = txtDataInicio.getText();
-       String[] partes = xgh2.split("/");
-       String parte1 = partes[0]; 
-       String parte2 = partes[1]; 
-       String parte3 = partes[2];
+        String xgh2 = txtDataInicio.getText();
+        String[] partes = xgh2.split("/");
+        String parte1 = partes[0];
+        String parte2 = partes[1];
+        String parte3 = partes[2];
         
-       int day = Integer.parseInt(parte1);
-       int month = Integer.parseInt(parte2) - 1;
-       int year = Integer.parseInt(parte3);
+        int day = Integer.parseInt(parte1);
+        int month = Integer.parseInt(parte2) - 1;
+        int year = Integer.parseInt(parte3);
         
-       expo.setDataInicio(new GregorianCalendar(year,month,day));
-       
-       
-       expo.setNome(txtNome.getText());
-       expo.setSala(new Sala());
-       expo.getSala().setNumeroSala(Integer.parseInt((String) cmbSala.getSelectedItem()));
-       expo.setObras(obras);
-       
-       controle.registrarExposicao(expo);
-
+        expo.setDataInicio(new GregorianCalendar(year,month,day));
+        
+        
+        expo.setNome(txtNome.getText());
+        expo.setSala(new Sala());
+        expo.getSala().setNumeroSala(Integer.parseInt((String) cmbSala.getSelectedItem()));
+        expo.setObras(obras);
+        
+        controle.registrarExposicao(expo);
+        
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
+        tbDados.setModel(tableModel);
+        
+        DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
+        cmbObra.setModel(cmbObraModel);
+        
+        DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
+        cmbSala.setModel(cmdSalaModel);
+        
+        
+        
     }//GEN-LAST:event_gradientButton2ActionPerformed
-
+    
     private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
- 
+        
     }//GEN-LAST:event_gradientButton3ActionPerformed
-
+    
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
-
+    
     private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
         this.dispose();
     }//GEN-LAST:event_gradientButton4ActionPerformed
-
+    
     private void rdbTemporarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbTemporarioActionPerformed
         if(rdbTemporario.isSelected()){
-        txtDataTermino.setEditable(true);
+            txtDataTermino.setEditable(true);
         } else {
-        txtDataTermino.setText("");
-        txtDataTermino.setEditable(false);
+            txtDataTermino.setText("");
+            txtDataTermino.setEditable(false);
         }
     }//GEN-LAST:event_rdbTemporarioActionPerformed
-
+    
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtDataTermino.setEditable(false);
         
@@ -275,16 +286,16 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
         cmbSala.setModel(cmdSalaModel);
     }//GEN-LAST:event_formInternalFrameOpened
-
+    
     private void rdbTemporarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbTemporarioMouseClicked
         
     }//GEN-LAST:event_rdbTemporarioMouseClicked
-
+    
     private void rdbTemporarioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbTemporarioStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbTemporarioStateChanged
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbObra;
     private javax.swing.JComboBox<String> cmbSala;

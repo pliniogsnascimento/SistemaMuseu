@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 
 public class ControleGerenciarExposicao {
@@ -21,6 +22,8 @@ public class ControleGerenciarExposicao {
     public void registrarExposicao(Exposicao expo){
         DAO expoDAO = factory.criarDao();
         expoDAO.salvar(expo);
+        
+        JOptionPane.showMessageDialog(null, "Exposição cadastrada com sucesso!");
     }
     
     public Vector carregarColunas() {
