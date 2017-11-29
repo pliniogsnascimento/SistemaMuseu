@@ -204,8 +204,8 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         Restauracao rest = new Restauracao();
         
         rest.setDescricao(txtDescricao.getText());
-        rest.setInstituicao((Instituicao)cmbNomeInstituicao.getSelectedItem());
-        rest.setObra((Obra)cmbObra.getSelectedItem());
+        rest.setInstituicao(controle.getInstituicaoPorNome((String) cmbNomeInstituicao.getSelectedItem()));
+        rest.setObra((controle.getObraPorNome((String) cmbObra.getSelectedItem())));
         rest.setStatus("Solicitado");
         
         String xgh = txtDataEnvio.getText();
