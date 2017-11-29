@@ -4,6 +4,8 @@ import com.fatec.museu.dao.DAO;
 import com.fatec.museu.model.Obra;
 import com.fatec.museu.util.FactoryDAO;
 import com.fatec.museu.util.FactoryObraDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -47,7 +49,11 @@ public class ControleGerenciarAcervo {
             
             registro.add(obra.getIdObra());
             registro.add(obra.getTitulo());
-            registro.add(obra.getDataDeObra());
+            
+            SimpleDateFormat sdt = new SimpleDateFormat("dd/MM/yyyy");
+            String data = sdt.format((Date) obra.getDataDeObra().getTime());
+            
+            registro.add(data);
             registro.add(obra.getTipoDeObra());
             registro.add(obra.getAutor());
             registro.add(obra.getCategoria());

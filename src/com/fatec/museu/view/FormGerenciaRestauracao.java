@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.fatec.museu.view;
 
 import com.fatec.museu.controllers.ControleGerenciarRestauracao;
@@ -13,6 +13,7 @@ import java.beans.PropertyVetoException;
 import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     static private FormGerenciaRestauracao instancia;
+    private ControleGerenciarRestauracao controle = new ControleGerenciarRestauracao();
     /**
      * Creates new form FormGerenciaRestauracao
      */
@@ -27,14 +29,14 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-      public static FormGerenciaRestauracao getInstance() {
+    public static FormGerenciaRestauracao getInstance() {
         if(instancia == null) {
             instancia = new FormGerenciaRestauracao();
         }
         return instancia;
     }
     
-  
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +48,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbDados = new javax.swing.JTable();
         btnRemover = new com.fatec.museu.util.GradientButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,7 +91,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         jLabel1.setText("Gerenciar Restauração");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, 45));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,7 +102,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbDados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 870, 190));
 
@@ -188,15 +190,15 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRemoverActionPerformed
-
+    
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-
+    
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Restauracao rest = new Restauracao();
         
@@ -207,8 +209,8 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         
         String xgh = txtDataEnvio.getText();
         String[] parts = xgh.split("/");
-        String part1 = parts[0]; 
-        String part2 = parts[1]; 
+        String part1 = parts[0];
+        String part2 = parts[1];
         String part3 = parts[2];
         
         int day = Integer.parseInt(part1);
@@ -217,12 +219,12 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         
         
         rest.setDataDeEnvio(new GregorianCalendar(year,month,day));
-
-       
+        
+        
         String xgh2 = txtDataRetorno.getText();
         String[] partes = xgh2.split("/");
-        String parte1 = partes[0]; 
-        String parte2 = partes[1]; 
+        String parte1 = partes[0];
+        String parte2 = partes[1];
         String parte3 = partes[2];
         
         int days = Integer.parseInt(parte1);
@@ -231,12 +233,14 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         
         
         rest.setDataDeRetorno(new GregorianCalendar(years,months,days));
-
-        ControleGerenciarRestauracao controle = new ControleGerenciarRestauracao();
+        
         controle.registrarInstituicao(rest); 
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+    
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
+        tbDados.setModel(tableModel);
+        
         try{
         instancia.setSelected(true);
         //diz que a janela interna é maximizável
@@ -245,12 +249,12 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         instancia.setPreferredSize(new java.awt.Dimension(300, 300));
          } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
-
+    
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton btnAlterar;
     private com.fatec.museu.util.GradientButton btnCadastrar;
@@ -266,7 +270,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbDados;
     private javax.swing.JFormattedTextField txtDataEnvio;
     private javax.swing.JFormattedTextField txtDataRetorno;
     private javax.swing.JTextField txtDescricao;
