@@ -407,7 +407,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         txtDadosBiograficos.setText(model.getValueAt(selectedRowIndex, 6).toString());
         txtDoadorObra.setText(model.getValueAt(selectedRowIndex, 7).toString());
         
-        if("Físico".equals(model.getValueAt(selectedRowIndex, 3).toString())){
+        if("Físico" == (model.getValueAt(selectedRowIndex, 3).toString())){
             rdbObraFisica.setSelected(true);
         } else {
             rdbObraVirtual.setSelected(true);
