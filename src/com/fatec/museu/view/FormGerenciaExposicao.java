@@ -50,8 +50,9 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jProgressBar1 = new javax.swing.JProgressBar();
+        gradientButton5 = new com.fatec.museu.util.GradientButton();
         jLabel1 = new javax.swing.JLabel();
-        gradientButton2 = new com.fatec.museu.util.GradientButton();
+        btnCriar = new com.fatec.museu.util.GradientButton();
         gradientButton3 = new com.fatec.museu.util.GradientButton();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -67,6 +68,14 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         txtDataInicio = new javax.swing.JFormattedTextField();
         txtDataTermino = new javax.swing.JFormattedTextField();
         rdbTemporario = new javax.swing.JRadioButton();
+        gradientButton6 = new com.fatec.museu.util.GradientButton();
+
+        gradientButton5.setText("Voltar");
+        gradientButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradientButton5ActionPerformed(evt);
+            }
+        });
 
         setPreferredSize(new java.awt.Dimension(850, 610));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -92,13 +101,13 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         jLabel1.setText("Gerenciar Exposição");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 11, -1, -1));
 
-        gradientButton2.setText("Criar");
-        gradientButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCriar.setText("Criar");
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton2ActionPerformed(evt);
+                btnCriarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 100, 40));
+        getContentPane().add(btnCriar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 100, 40));
 
         gradientButton3.setText("Adicionar Obra");
         gradientButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -196,10 +205,18 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         });
         getContentPane().add(rdbTemporario, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 100, -1));
 
+        gradientButton6.setText("Voltar");
+        gradientButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradientButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gradientButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 493, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void gradientButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton2ActionPerformed
+    private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
         
         Exposicao expo;
         Sala sala = new Sala();
@@ -248,7 +265,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         
         carregarDados();
         
-    }//GEN-LAST:event_gradientButton2ActionPerformed
+    }//GEN-LAST:event_btnCriarActionPerformed
     
     private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
         
@@ -292,13 +309,21 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         txtDataInicio.setText(model.getValueAt(selectedRowIndex, 2).toString());
         txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
         cmbSala.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
-        
+        btnCriar.setEnabled(false);
         if(model.getValueAt(selectedRowIndex, 3).toString() != ""){
             rdbTemporario.setSelected(true);
             txtDataTermino.setText(model.getValueAt(selectedRowIndex, 2).toString());
         }
         
     }//GEN-LAST:event_tbDadosMouseClicked
+
+    private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gradientButton5ActionPerformed
+
+    private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gradientButton6ActionPerformed
     
     private void carregarDados() {
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()){
@@ -318,11 +343,13 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.fatec.museu.util.GradientButton btnCriar;
     private javax.swing.JComboBox<String> cmbObra;
     private javax.swing.JComboBox<String> cmbSala;
-    private com.fatec.museu.util.GradientButton gradientButton2;
     private com.fatec.museu.util.GradientButton gradientButton3;
     private com.fatec.museu.util.GradientButton gradientButton4;
+    private com.fatec.museu.util.GradientButton gradientButton5;
+    private com.fatec.museu.util.GradientButton gradientButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -22,7 +22,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     public FormGerenciaSala() {
         initComponents();
     }
-    
+
     public static FormGerenciaSala getInstance() {
         if(instaciaSala == null) {
             instaciaSala = new FormGerenciaSala();
@@ -115,14 +115,18 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+
         tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                tbDadosMouseClicked(evt);
             }
         });
+
+
         jScrollPane2.setViewportView(tbDados);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 670, 240));
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 240));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +156,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Sala sala = new Sala();
-        
+
         sala.setMaximoDeVisitantes(Integer.parseInt(txtMaximoVisitantes.getText()));
         sala.setNumeroSala(Integer.parseInt(txtNumeroSala.getText()));
 
@@ -179,12 +183,12 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
-    
+
     private void carregarDados() {
         DefaultTableModel model = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
         tbDados.setModel(model);
     }
-    
+
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         carregarDados();
         try{
@@ -193,9 +197,18 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
             instaciaSala.setMaximizable(false);
             instaciaSala.setResizable(false);
             //set o tamanho máximo dela, que depende da janela pai
-                   // TODO add your handling code here:
+            // TODO add your handling code here:
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        int selectedRowIndex = tbDados.getSelectedRow();
+        btnRegistrar.setEnabled(false);
+        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
+
+    }//GEN-LAST:event_jTable2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

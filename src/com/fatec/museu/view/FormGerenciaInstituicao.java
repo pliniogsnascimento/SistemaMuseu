@@ -40,9 +40,9 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gradientButton5 = new com.fatec.museu.util.GradientButton();
-        gradientButton3 = new com.fatec.museu.util.GradientButton();
-        gradientButton4 = new com.fatec.museu.util.GradientButton();
+        btnAlterar = new com.fatec.museu.util.GradientButton();
+        btnCadastrar = new com.fatec.museu.util.GradientButton();
+        btnVoltar = new com.fatec.museu.util.GradientButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDados = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
@@ -52,7 +52,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JFormattedTextField();
-        gradientButton6 = new com.fatec.museu.util.GradientButton();
+        btnRemover = new com.fatec.museu.util.GradientButton();
         gradientButton7 = new com.fatec.museu.util.GradientButton();
         gradientButton8 = new com.fatec.museu.util.GradientButton();
 
@@ -76,29 +76,29 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gradientButton5.setText("Alterar");
-        gradientButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton5ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 110, 40));
+        getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 110, 40));
 
-        gradientButton3.setText("Cadastrar");
-        gradientButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton3ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 110, 40));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 110, 40));
 
-        gradientButton4.setText("Voltar");
-        gradientButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton4ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 110, 40));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 110, 40));
 
         tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,13 +154,13 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         }
         getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 220, 30));
 
-        gradientButton6.setText("Remover");
-        gradientButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gradientButton6ActionPerformed(evt);
+                btnRemoverActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
+        getContentPane().add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 110, 40));
 
         gradientButton7.setText("Remover");
         gradientButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -181,11 +181,11 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton5ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
     
-    private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Instituicao inst = new Instituicao();
         
         inst.setEndereco(txtEndereco.getText());
@@ -196,11 +196,11 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         controle.registrarInstituicao(inst);
         
         carregarDados();
-    }//GEN-LAST:event_gradientButton3ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
     
-    private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_gradientButton4ActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
     
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
@@ -210,9 +210,9 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoActionPerformed
     
-    private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gradientButton6ActionPerformed
+    }//GEN-LAST:event_btnRemoverActionPerformed
     
     private void gradientButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton7ActionPerformed
         // TODO add your handling code here:
@@ -245,21 +245,23 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
 
+
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
          DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
-        
+        btnCadastrar.setEnabled(false);
         txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
         txtEndereco.setText(model.getValueAt(selectedRowIndex, 3).toString());
         txtTelefone.setText(model.getValueAt(selectedRowIndex, 2).toString());
     }//GEN-LAST:event_tbDadosMouseClicked
 
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.fatec.museu.util.GradientButton gradientButton3;
-    private com.fatec.museu.util.GradientButton gradientButton4;
-    private com.fatec.museu.util.GradientButton gradientButton5;
-    private com.fatec.museu.util.GradientButton gradientButton6;
+    private com.fatec.museu.util.GradientButton btnAlterar;
+    private com.fatec.museu.util.GradientButton btnCadastrar;
+    private com.fatec.museu.util.GradientButton btnRemover;
+    private com.fatec.museu.util.GradientButton btnVoltar;
     private com.fatec.museu.util.GradientButton gradientButton7;
     private com.fatec.museu.util.GradientButton gradientButton8;
     private javax.swing.JLabel jLabel1;

@@ -104,6 +104,11 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDados);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 860, 190));
@@ -123,7 +128,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         jLabel3.setText("Nome da Instituição");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, 15));
 
-        jLabel4.setText("Telefone");
+        jLabel4.setText("Status");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 70, -1));
 
         jLabel6.setText("Data Prevista Para o Retorno");
@@ -166,7 +171,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         getContentPane().add(txtDataRetorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 250, 30));
 
         try {
-            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####################################")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -285,6 +290,16 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     private void cmbNomeInstituicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNomeInstituicaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbNomeInstituicaoActionPerformed
+
+    private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
+       DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        int selectedRowIndex = tbDados.getSelectedRow();
+        btnCadastrar.setEnabled(false);
+        txtDataEnvio.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        txtDataRetorno.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        txtDescricao.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        txtTelefone.setText(model.getValueAt(selectedRowIndex, 5).toString());
+    }//GEN-LAST:event_tbDadosMouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
