@@ -115,16 +115,12 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-
         tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDadosMouseClicked(evt);
             }
         });
-
-
         jScrollPane2.setViewportView(tbDados);
-
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 240));
 
@@ -144,6 +140,11 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         getContentPane().add(txtMaximoVisitantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 210, 30));
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -209,6 +210,16 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        Sala sala = new Sala();
+
+        sala.setMaximoDeVisitantes(Integer.parseInt(txtMaximoVisitantes.getText()));
+        sala.setNumeroSala(Integer.parseInt(txtNumeroSala.getText()));
+
+        controle.registrarSala(sala);
+        carregarDados();
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

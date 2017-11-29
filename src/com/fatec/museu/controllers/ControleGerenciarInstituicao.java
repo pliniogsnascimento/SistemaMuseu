@@ -20,6 +20,12 @@ import javax.swing.JOptionPane;
 public class ControleGerenciarInstituicao {
     private FactoryDAO factory = new FactoryInstituicaoDAO();
     
+    public void atualizarInstituicao(Instituicao inst) {
+         DAO instDAO = factory.criarDao();
+        instDAO.salvar(inst);
+        JOptionPane.showMessageDialog(null, "Instituição atualizada com sucesso");
+    }
+    
     public void registrarInstituicao(Instituicao inst){
         DAO instDAO = factory.criarDao();
         instDAO.salvar(inst);
