@@ -1,10 +1,15 @@
 package com.fatec.museu.controllers;
 
 import com.fatec.museu.dao.DAO;
+import com.fatec.museu.model.Instituicao;
+import com.fatec.museu.model.Obra;
 import com.fatec.museu.model.Restauracao;
 import com.fatec.museu.util.FactoryDAO;
+import com.fatec.museu.util.FactoryInstituicaoDAO;
+import com.fatec.museu.util.FactoryObraDAO;
 import com.fatec.museu.util.FactoryRestauracaoDAO;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
@@ -54,5 +59,40 @@ public class ControleGerenciarRestauracao {
         colunas.add("Instituição");
         
         return colunas;
+    }
+    
+    public List<String> carregaObras() {
+        DAO restDao = factory.criarDao();
+        factory = new FactoryObraDAO();
+        DAO obraDao = factory.criarDao();
+        
+        List<Obra> obras = obraDao.listarTodos();
+        
+        List<Restauracao> restauracoes = restDao.listarTodos();
+        
+        for(Restauracao restauracao:restauracoes) {
+            obras.remove(restauracao.getObra());
+        }
+        
+        List<String> nomeObras = new LinkedList<>();
+        
+        for(Obra obra:obras) {
+            nomeObras.add(obra.getTitulo());
+        }
+        
+        return nomeObras;
+    }
+    
+    public List<String> carregaInstituicao() {
+        factory = new FactoryInstituicaoDAO();
+        DAO instDao = factory.criarDao();
+        
+        List<String> nomeInst = new LinkedList();
+        List<Instituicao> instituicoes = instDao.listarTodos();
+        for(Instituicao instituicao:instituicoes) {
+            nomeInst.add(instituicao.getNome());
+        }
+        
+        return nomeInst;
     }
 }

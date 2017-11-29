@@ -1,10 +1,11 @@
+
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
 package com.fatec.museu.view;
-
+import javax.swing.DefaultComboBoxModel;
 import com.fatec.museu.controllers.ControleGerenciarRestauracao;
 import com.fatec.museu.model.Instituicao;
 import com.fatec.museu.model.Obra;
@@ -237,18 +238,25 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         controle.registrarInstituicao(rest); 
     }//GEN-LAST:event_btnCadastrarActionPerformed
     
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
         tbDados.setModel(tableModel);
         
+        DefaultComboBoxModel cmdObraModel = new DefaultComboBoxModel(controle.carregaObras().toArray());
+        cmbObra.setModel(cmdObraModel);
+        
+        DefaultComboBoxModel cmbNomeInstituicaoModel = new DefaultComboBoxModel(controle.carregaInstituicao().toArray());
+        cmbNomeInstituicao.setModel(cmbNomeInstituicaoModel);
+        
         try{
-        instancia.setSelected(true);
-        //diz que a janela interna é maximizável
-        instancia.setMaximizable(true);
-        //set o tamanho máximo dela, que depende da janela pai
-        instancia.setPreferredSize(new java.awt.Dimension(300, 300));
-         } catch (java.beans.PropertyVetoException e) {}
+            instancia.setSelected(true);
+            //diz que a janela interna é maximizável
+            instancia.setMaximizable(true);
+            //set o tamanho máximo dela, que depende da janela pai
+            instancia.setMaximum(true);        // TODO add your handling code here:
+        } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+    
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
