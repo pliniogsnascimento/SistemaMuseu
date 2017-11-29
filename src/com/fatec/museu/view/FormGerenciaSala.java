@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormGerenciaSala extends javax.swing.JInternalFrame {
     static private FormGerenciaSala instaciaSala;
+    private ControleGerenciarSala controle = new ControleGerenciarSala();
     /**
      * Creates new form FormGerenciaSala
      */
@@ -45,7 +46,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbDados = new javax.swing.JTable();
         btnVoltar = new com.fatec.museu.util.GradientButton();
         txtMaximoVisitantes = new javax.swing.JTextField();
         btnAlterar = new com.fatec.museu.util.GradientButton();
@@ -103,7 +104,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         jLabel3.setText("Numero Da Sala");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, 20));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbDados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -114,12 +115,16 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+
+        tbDados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                tbDadosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        
+
+        jScrollPane2.setViewportView(tbDados);
+
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 240));
 
@@ -150,15 +155,13 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
-        ControleGerenciarSala controle = new ControleGerenciarSala();
-        
         Sala sala = new Sala();
         
         sala.setMaximoDeVisitantes(Integer.parseInt(txtMaximoVisitantes.getText()));
         sala.setNumeroSala(Integer.parseInt(txtNumeroSala.getText()));
 
         controle.registrarSala(sala);
+        carregarDados();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
@@ -180,9 +183,14 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
-
+    
+    private void carregarDados() {
+        DefaultTableModel model = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
+        tbDados.setModel(model);
+    }
+    
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-  
+        carregarDados();
         try{
             instaciaSala.setSelected(true);
             //diz que a janela interna é maximizável
@@ -212,7 +220,7 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbDados;
     private javax.swing.JTextField txtMaximoVisitantes;
     private javax.swing.JTextField txtNumeroSala;
     // End of variables declaration//GEN-END:variables

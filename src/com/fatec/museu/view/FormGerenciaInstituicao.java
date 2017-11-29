@@ -1,10 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.fatec.museu.view;
-    
+
 import com.fatec.museu.controllers.ControleGerenciarInstituicao;
 import com.fatec.museu.model.Instituicao;
 import javax.swing.table.DefaultTableModel;
@@ -15,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
     private ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
-    static private FormGerenciaInstituicao instanciaInstituicao; 
-
+    static private FormGerenciaInstituicao instanciaInstituicao;
+    
     /**
      * Creates new form FormGerenciaInstituicao
      */
@@ -24,13 +24,13 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         initComponents();
     }
     
-     public static FormGerenciaInstituicao getInstance() {
+    public static FormGerenciaInstituicao getInstance() {
         if(instanciaInstituicao == null) {
             instanciaInstituicao = new FormGerenciaInstituicao();
         }
         return instanciaInstituicao;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,58 +180,71 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton5ActionPerformed
-
+    
     private void gradientButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton3ActionPerformed
         Instituicao inst = new Instituicao();
-     
+        
         inst.setEndereco(txtEndereco.getText());
         inst.setNome(txtNome.getText());
         inst.setTelefone(txtTelefone.getText());
-      
+        
         ControleGerenciarInstituicao controle = new ControleGerenciarInstituicao();
-        controle.registrarInstituicao(inst);                 
+        controle.registrarInstituicao(inst);
+        
+        carregarDados();
     }//GEN-LAST:event_gradientButton3ActionPerformed
-
+    
     private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_gradientButton4ActionPerformed
-
+    
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
-
+    
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnderecoActionPerformed
-
+    
     private void gradientButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton6ActionPerformed
-
+    
     private void gradientButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton7ActionPerformed
-
+    
     private void gradientButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gradientButton8ActionPerformed
-
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas());
+    
+    private void carregarDados() {
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregaLinhas(), controle.carregaColunas()){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         tbDados.setModel(tableModel);
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        carregarDados();
         try{
             instanciaInstituicao.setSelected(true);
             //diz que a janela interna é maximizável
             instanciaInstituicao.setMaximizable(false);
             instanciaInstituicao.setResizable(false);
             //set o tamanho máximo dela, que depende da janela pai
-                   // TODO add your handling code here:
+            // TODO add your handling code here:
         } catch (java.beans.PropertyVetoException e) {}
     }//GEN-LAST:event_formInternalFrameOpened
+
 
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
          DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
@@ -241,6 +254,7 @@ public class FormGerenciaInstituicao extends javax.swing.JInternalFrame {
         txtEndereco.setText(model.getValueAt(selectedRowIndex, 3).toString());
         txtTelefone.setText(model.getValueAt(selectedRowIndex, 2).toString());
     }//GEN-LAST:event_tbDadosMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -210,8 +210,8 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         Restauracao rest = new Restauracao();
         
         rest.setDescricao(txtDescricao.getText());
-        rest.setInstituicao((Instituicao)cmbNomeInstituicao.getSelectedItem());
-        rest.setObra((Obra)cmbObra.getSelectedItem());
+        rest.setInstituicao(controle.getInstituicaoPorNome((String) cmbNomeInstituicao.getSelectedItem()));
+        rest.setObra(controle.getObraPorNome((String) cmbObra.getSelectedItem()));
         rest.setStatus("Solicitado");
         
         String xgh = txtDataEnvio.getText();
@@ -242,10 +242,17 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         rest.setDataDeRetorno(new GregorianCalendar(years,months,days));
         
         controle.registrarInstituicao(rest); 
+        carregarDados();
     }//GEN-LAST:event_btnCadastrarActionPerformed
     
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas());
+    private void carregarDados() {
+        DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         tbDados.setModel(tableModel);
         
         DefaultComboBoxModel cmdObraModel = new DefaultComboBoxModel(controle.carregaObras().toArray());
@@ -253,6 +260,10 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         
         DefaultComboBoxModel cmbNomeInstituicaoModel = new DefaultComboBoxModel(controle.carregaInstituicao().toArray());
         cmbNomeInstituicao.setModel(cmbNomeInstituicaoModel);
+    }
+    
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        carregarDados();
         
         try{
             instancia.setSelected(true);
