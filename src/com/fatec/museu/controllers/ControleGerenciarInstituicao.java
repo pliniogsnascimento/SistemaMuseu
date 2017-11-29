@@ -11,6 +11,7 @@ import com.fatec.museu.util.FactoryDAO;
 import com.fatec.museu.util.FactoryInstituicaoDAO;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class ControleGerenciarInstituicao {
     public void registrarInstituicao(Instituicao inst){
         DAO instDAO = factory.criarDao();
         instDAO.salvar(inst);
+        JOptionPane.showMessageDialog(null, "Instituição cadastrada com sucesso");
     }
     
     public Vector carregaColunas() {

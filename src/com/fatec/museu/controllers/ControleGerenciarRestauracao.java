@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Vector;
 import com.fatec.museu.dao.InstituicaoDAO;
 import com.fatec.museu.dao.ObraDAO;
+import javax.swing.JOptionPane;
 
 public class ControleGerenciarRestauracao {
     private FactoryDAO factory = new FactoryRestauracaoDAO();
@@ -22,6 +23,7 @@ public class ControleGerenciarRestauracao {
         factory = new FactoryRestauracaoDAO();
         DAO restDAO = factory.criarDao();
         restDAO.salvar(rest);
+        JOptionPane.showMessageDialog(null, "Restauracao cadastrada com sucesso!");
     }
     
     public Vector carregarLinhas() {
