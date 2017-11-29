@@ -205,8 +205,8 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
         btnRegistrar.setEnabled(false);
-        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 0).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
 
