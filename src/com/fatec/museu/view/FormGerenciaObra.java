@@ -345,7 +345,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         obra.setDoadorDeObra(txtDoadorObra.getText());
 
         if(rdbObraFisica.isSelected())
-            obra.setTipoDeObra("Fisico");
+            obra.setTipoDeObra("Físico");
         else
             obra.setTipoDeObra("Virtual");
         
