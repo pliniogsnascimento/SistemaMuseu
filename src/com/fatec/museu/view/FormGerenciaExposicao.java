@@ -53,7 +53,9 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
-        gradientButton2 = new com.fatec.museu.util.GradientButton();
+
+        btnCriar = new com.fatec.museu.util.GradientButton();
+
         btnAlterar = new com.fatec.museu.util.GradientButton();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -101,7 +103,8 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 gradientButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 100, 40));
+
+        getContentPane().add(btnCriar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 100, 40));
 
         btnAlterar.setText("Alterar");
         btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,7 +173,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
                 gradientButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 493, 100, 40));
+        getContentPane().add(gradientButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 490, 100, 40));
 
         try {
             txtDataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -267,7 +270,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_gradientButton2ActionPerformed
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        
+        btnCriar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
     
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -311,7 +314,9 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         
         cmbSala.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
         
-        
+
+        btnCriar.setEnabled(false);
+
         if(model.getValueAt(selectedRowIndex, 3).toString() != ""){
             rdbTemporario.setSelected(true);
             txtDataTermino.setText(model.getValueAt(selectedRowIndex, 2).toString());
@@ -391,9 +396,11 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton btnAlterar;
+
+    private com.fatec.museu.util.GradientButton btnCriar;
     private javax.swing.JComboBox<String> cmbObra;
     private javax.swing.JComboBox<String> cmbSala;
-    private com.fatec.museu.util.GradientButton gradientButton2;
+
     private com.fatec.museu.util.GradientButton gradientButton4;
     private com.fatec.museu.util.GradientButton gradientButton5;
     private javax.swing.JLabel jLabel1;
