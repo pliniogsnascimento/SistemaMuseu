@@ -35,6 +35,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
     static private FormGerenciaObra instanciaObra;
     private byte[] byteArray;
     private ControleGerenciarAcervo controle = new ControleGerenciarAcervo();
+    private Long id;
     /**
      * Creates new form FormGerenciaObra
      */
@@ -213,6 +214,11 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 1070, 240));
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -400,6 +406,7 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel)tb_dados.getModel();
         int selectedRowIndex = tb_dados.getSelectedRow();
         
+        id = Long.parseLong(model.getValueAt(selectedRowIndex, 0).toString());
         txtTitulo.setText(model.getValueAt(selectedRowIndex, 1).toString());
         txtDataObra.setText(model.getValueAt(selectedRowIndex, 2).toString());
         txtAutor.setText(model.getValueAt(selectedRowIndex, 4).toString());
@@ -428,6 +435,57 @@ public class FormGerenciaObra extends javax.swing.JInternalFrame {
         lblImagem.setIcon(icon);
 
     }//GEN-LAST:event_tb_dadosMouseClicked
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        Obra obra = new Obra();
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        
+        obra.setIdObra(id);
+        
+        obra.setAutor(txtAutor.getText());
+        obra.setDadosBiograficos(txtDadosBiograficos.getText());
+        obra.setTitulo(txtTitulo.getText());
+        obra.setCategoria(cmbTipoObra.getSelectedItem().toString());
+
+        String xgh = txtDataObra.getText();
+        String[] parts = xgh.split("/");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+
+        int day = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2) - 1;
+        int year = Integer.parseInt(part3);
+
+        obra.setDataDeObra(new GregorianCalendar(year,month,day));
+
+
+
+
+        /*
+        try {
+            obra.setDataDeObra(format.parse(txtDataObra.getText()));
+        } catch (ParseException ex) {
+
+            Logger.getLogger(FormGerenciaObra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+
+        obra.setCategoria(txtCategoria.getText());
+        obra.setDoadorDeObra(txtDoadorObra.getText());
+
+        if(rdbObraFisica.isSelected())
+            obra.setTipoDeObra("Físico");
+        else
+            obra.setTipoDeObra("Virtual");
+        
+        
+        obra.setImagem(byteArray);
+        
+
+        controle.atualizarObra(obra);
+        carregarDados();
+    }//GEN-LAST:event_btnAlterarMouseClicked
 
 
 
