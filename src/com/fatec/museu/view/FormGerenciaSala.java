@@ -203,11 +203,11 @@ public class FormGerenciaSala extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
-
-        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        btnRegistrar.setEnabled(false);
+        txtMaximoVisitantes.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        txtNumeroSala.setText(model.getValueAt(selectedRowIndex, 0).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
 
