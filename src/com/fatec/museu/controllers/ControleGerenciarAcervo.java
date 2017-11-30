@@ -90,4 +90,10 @@ public class ControleGerenciarAcervo {
         obraDAO.salvar(obra);
         JOptionPane.showMessageDialog(null, "Obra cadastrada com sucesso!");
     }
+
+    public void atualizarObra(Obra obra) {
+        DAO obraDAO = factory.criarDao();
+        obraDAO.salvar(obra);
+        JOptionPane.showMessageDialog(null, "Obra atualizada com sucesso!");
+    }
 }
