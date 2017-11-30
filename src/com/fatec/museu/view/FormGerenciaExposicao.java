@@ -26,22 +26,22 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     static private FormGerenciaExposicao instanciaExposicao;
     private Exposicao exposicao = new Exposicao();
     private Long id;
-    
+
     private List<Obra> obras = new LinkedList();
     private ControleGerenciarExposicao controle = new ControleGerenciarExposicao();
-    
-    
+
+
     public FormGerenciaExposicao() {
         initComponents();
     }
-    
+
     public static FormGerenciaExposicao getInstance() {
         if(instanciaExposicao == null) {
             instanciaExposicao = new FormGerenciaExposicao();
         }
         return instanciaExposicao;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,8 +97,8 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
         jLabel1.setText("Gerenciar Exposição");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 11, -1, -1));
 
-        gradientButton2.setText("Criar");
-        gradientButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCriar.setText("Criar");
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gradientButton2ActionPerformed(evt);
             }
@@ -217,70 +217,70 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void gradientButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton2ActionPerformed
-        
+
         Exposicao expo;
         Sala sala = new Sala();
-        
+
         if(rdbTemporario.isSelected())
             expo = new Temporaria();
         else
             expo = new Exposicao();
-        
+
         if(rdbTemporario.isSelected()){
-            
+
             String xgh = txtDataInicio.getText();
             String[] parts = xgh.split("/");
             String part1 = parts[0];
             String part2 = parts[1];
             String part3 = parts[2];
-            
+
             int day = Integer.parseInt(part1);
             int month = Integer.parseInt(part2) - 1;
             int year = Integer.parseInt(part3);
-            
-            
+
+
             expo.setDataTermino(new GregorianCalendar(year,month,day));
         }
-        
-        
+
+
         String xgh2 = txtDataInicio.getText();
         String[] partes = xgh2.split("/");
         String parte1 = partes[0];
         String parte2 = partes[1];
         String parte3 = partes[2];
-        
+
         int day = Integer.parseInt(parte1);
         int month = Integer.parseInt(parte2) - 1;
         int year = Integer.parseInt(parte3);
-        
+
         expo.setDataInicio(new GregorianCalendar(year,month,day));
-        
-        
+
+
         expo.setNome(txtNome.getText());
         expo.setSala(new Sala());
         expo.getSala().setNumeroSala(Integer.parseInt((String) cmbSala.getSelectedItem()));
         expo.setObras(obras);
-        
+
         controle.registrarExposicao(expo);
-        
+
         carregarDados();
-        
+
     }//GEN-LAST:event_gradientButton2ActionPerformed
-    
+
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         btnCriar.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
-    
+
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
-    
+
     private void gradientButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton4ActionPerformed
         this.dispose();
     }//GEN-LAST:event_gradientButton4ActionPerformed
-    
+
     private void rdbTemporarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbTemporarioActionPerformed
         if(rdbTemporario.isSelected()){
             txtDataTermino.setEditable(true);
@@ -289,17 +289,17 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
             txtDataTermino.setEditable(false);
         }
     }//GEN-LAST:event_rdbTemporarioActionPerformed
-    
+
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         txtDataTermino.setEditable(false);
         carregarDados();
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
-    
+
     private void rdbTemporarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbTemporarioMouseClicked
-        
+
     }//GEN-LAST:event_rdbTemporarioMouseClicked
-    
+
     private void rdbTemporarioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdbTemporarioStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_rdbTemporarioStateChanged
@@ -307,13 +307,13 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
         DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
-        
+
         id = Long.parseLong(model.getValueAt(selectedRowIndex, 0).toString());
         txtDataInicio.setText(model.getValueAt(selectedRowIndex, 2).toString());
         txtNome.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        
+
         cmbSala.setSelectedItem(model.getValueAt(selectedRowIndex, 4).toString());
-        
+
 
         btnCriar.setEnabled(false);
 
@@ -321,7 +321,7 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
             rdbTemporario.setSelected(true);
             txtDataTermino.setText(model.getValueAt(selectedRowIndex, 2).toString());
         }
-        
+
     }//GEN-LAST:event_tbDadosMouseClicked
 
     private void gradientButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradientButton5ActionPerformed
@@ -333,50 +333,50 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
             exposicao = new Temporaria();
         else
             exposicao = new Exposicao();
-        
+
         exposicao.setIdExposicao(id);
-        
+
         if(rdbTemporario.isSelected()){
-            
+
             String xgh = txtDataInicio.getText();
             String[] parts = xgh.split("/");
             String part1 = parts[0];
             String part2 = parts[1];
             String part3 = parts[2];
-            
+
             int day = Integer.parseInt(part1);
             int month = Integer.parseInt(part2) - 1;
             int year = Integer.parseInt(part3);
-            
-            
+
+
             exposicao.setDataTermino(new GregorianCalendar(year,month,day));
         }
-        
-        
+
+
         String xgh2 = txtDataInicio.getText();
         String[] partes = xgh2.split("/");
         String parte1 = partes[0];
         String parte2 = partes[1];
         String parte3 = partes[2];
-        
+
         int day = Integer.parseInt(parte1);
         int month = Integer.parseInt(parte2) - 1;
         int year = Integer.parseInt(parte3);
-        
+
         exposicao.setDataInicio(new GregorianCalendar(year,month,day));
-        
-        
+
+
         exposicao.setNome(txtNome.getText());
         exposicao.setSala(new Sala());
         exposicao.getSala().setNumeroSala(Integer.parseInt((String) cmbSala.getSelectedItem()));
         exposicao.setObras(obras);
-        
+
         controle.atualizarExposicao(exposicao);
-        
+
         id = null;
         carregarDados();
     }//GEN-LAST:event_btnAlterarMouseClicked
-    
+
     private void carregarDados() {
         DefaultTableModel tableModel = new DefaultTableModel(controle.carregarLinhas(), controle.carregarColunas()){
             @Override
@@ -386,14 +386,14 @@ public class FormGerenciaExposicao extends javax.swing.JInternalFrame {
             }
         };
         tbDados.setModel(tableModel);
-        
+
         DefaultComboBoxModel cmbObraModel = new DefaultComboBoxModel(controle.carrebaObras().toArray());
         cmbObra.setModel(cmbObraModel);
-        
+
         DefaultComboBoxModel cmdSalaModel = new DefaultComboBoxModel(controle.carregaSalas().toArray());
         cmbSala.setModel(cmdSalaModel);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.fatec.museu.util.GradientButton btnAlterar;
 

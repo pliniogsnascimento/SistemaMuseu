@@ -114,4 +114,11 @@ public class ControleGerenciarRestauracao {
         
         return obraDao.buscarPorNome(nome);
     }
+
+    public void atualizarInstituicao(Restauracao rest) {
+        factory = new FactoryRestauracaoDAO();
+        DAO restDAO = factory.criarDao();
+        restDAO.salvar(rest);
+        JOptionPane.showMessageDialog(null, "Restauracao atualizada com sucesso!");
+    }
 }

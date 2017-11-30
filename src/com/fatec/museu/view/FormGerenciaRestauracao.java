@@ -62,12 +62,12 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
         btnCadastrar = new com.fatec.museu.util.GradientButton();
         cmbNomeInstituicao = new javax.swing.JComboBox<>();
         txtDataRetorno = new javax.swing.JFormattedTextField();
-        txtTelefone = new javax.swing.JFormattedTextField();
-        txtDescricao = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
         cmbObra = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtDataEnvio = new javax.swing.JFormattedTextField();
         btnAlterar = new com.fatec.museu.util.GradientButton();
+        txtDescricao1 = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(900, 600));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -170,14 +170,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         getContentPane().add(txtDataRetorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 250, 30));
-
-        try {
-            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####################################")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        getContentPane().add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, 250, 30));
-        getContentPane().add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 30));
+        getContentPane().add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, 250, 30));
 
         cmbObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cmbObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 280, 30));
@@ -194,12 +187,18 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
 
         btnAlterar.setBorder(null);
         btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
         getContentPane().add(btnAlterar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 105, 31));
+        getContentPane().add(txtDescricao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -215,10 +214,10 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Restauracao rest = new Restauracao();
         
-        rest.setDescricao(txtDescricao.getText());
+        rest.setDescricao(txtStatus.getText());
         rest.setInstituicao(controle.getInstituicaoPorNome((String) cmbNomeInstituicao.getSelectedItem()));
         rest.setObra(controle.getObraPorNome((String) cmbObra.getSelectedItem()));
-        rest.setStatus("Solicitado");
+        rest.setStatus(txtStatus.getText());
         
         String xgh = txtDataEnvio.getText();
         String[] parts = xgh.split("/");
@@ -293,14 +292,58 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbNomeInstituicaoActionPerformed
 
     private void tbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDadosMouseClicked
-       DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
+        DefaultTableModel model = (DefaultTableModel)tbDados.getModel();
         int selectedRowIndex = tbDados.getSelectedRow();
         btnCadastrar.setEnabled(false);
-        txtDataEnvio.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        
+        id = Long.parseLong(model.getValueAt(selectedRowIndex, 0).toString());
+        txtDescricao1.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        txtDataEnvio.setText(model.getValueAt(selectedRowIndex, 2).toString());
         txtDataRetorno.setText(model.getValueAt(selectedRowIndex, 3).toString());
-        txtDescricao.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        txtTelefone.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        txtStatus.setText(model.getValueAt(selectedRowIndex, 4).toString());
     }//GEN-LAST:event_tbDadosMouseClicked
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        Restauracao rest = new Restauracao();
+        
+        rest.setIdRestauracao(id);
+        
+        rest.setDescricao(txtStatus.getText());
+        rest.setInstituicao(controle.getInstituicaoPorNome((String) cmbNomeInstituicao.getSelectedItem()));
+        rest.setObra(controle.getObraPorNome((String) cmbObra.getSelectedItem()));
+        rest.setStatus(txtStatus.getText());
+        
+        String xgh = txtDataEnvio.getText();
+        String[] parts = xgh.split("/");
+        String part1 = parts[0];
+        String part2 = parts[1];
+        String part3 = parts[2];
+        
+        int day = Integer.parseInt(part1);
+        int month = Integer.parseInt(part2) - 1;
+        int year = Integer.parseInt(part3);
+        
+        
+        rest.setDataDeEnvio(new GregorianCalendar(year,month,day));
+        
+        
+        String xgh2 = txtDataRetorno.getText();
+        String[] partes = xgh2.split("/");
+        String parte1 = partes[0];
+        String parte2 = partes[1];
+        String parte3 = partes[2];
+        
+        int days = Integer.parseInt(parte1);
+        int months = Integer.parseInt(parte2) - 1;
+        int years = Integer.parseInt(parte3);
+        
+        
+        rest.setDataDeRetorno(new GregorianCalendar(years,months,days));
+        
+        controle.atualizarInstituicao(rest); 
+        id = null;
+        carregarDados();
+    }//GEN-LAST:event_btnAlterarMouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -321,7 +364,7 @@ public class FormGerenciaRestauracao extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbDados;
     private javax.swing.JFormattedTextField txtDataEnvio;
     private javax.swing.JFormattedTextField txtDataRetorno;
-    private javax.swing.JTextField txtDescricao;
-    private javax.swing.JFormattedTextField txtTelefone;
+    private javax.swing.JTextField txtDescricao1;
+    private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }
